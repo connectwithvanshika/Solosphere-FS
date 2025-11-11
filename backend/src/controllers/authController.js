@@ -7,12 +7,13 @@ import { generateToken } from '../utils/generateToken.js';
  * body: { name, email, password }
  */
 export const registerUser = async (req, res) => {
-
   try {
     const { name, email, password } = req.body;
+    
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email and password are required' });
     }
+    console.log(req.body)
 
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) {

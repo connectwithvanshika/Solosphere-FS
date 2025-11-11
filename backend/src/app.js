@@ -2,22 +2,19 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
+const app = express();
 
 import authRoutes from "./routes/authRoutes.js";
 
-const app = express();
 
-// ✅ Enable CORS (allow all origins)
 app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  cors()
 );
 
 // ✅ Parse JSON requests
 app.use(express.json());
+
+app.get("/hello",()=>console.log("first"))
 
 // ✅ Test route to verify POST works
 app.post("/test", (req, res) => {
