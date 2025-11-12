@@ -9,32 +9,32 @@ export default function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
     const res = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
-    const data = await res.json();
-    console.log("Response from backend:", data);
+    const data = await res.json().catch(() => null);
+    console.log("🔍 Status:", res.status);
+    console.log("🔍 Response:", data);
 
     if (res.ok) {
       alert("✅ Login successful!");
-      localStorage.setItem("token", data.token); // Save JWT token
+      localStorage.setItem("token", data.token);
     } else {
-      alert(data.message || "Login failed!");
+      alert(data?.message || "Login failed!");
     }
   } catch (error) {
-    console.error("❌ Error during login:", error);
-    alert("Something went wrong!");
+    console.error("❌ Network error during login:", error);
+    alert("Something went wrong! Check console for details.");
   }
 };
+
 
 
   return (
