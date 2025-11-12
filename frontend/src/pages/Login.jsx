@@ -20,7 +20,6 @@ const handleSubmit = async (e) => {
     });
 
     const data = await res.json().catch(() => null);
-    console.log("🔍 Status:", res.status);
     console.log("🔍 Response:", data);
 
     if (res.ok) {
