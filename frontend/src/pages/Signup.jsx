@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -8,6 +8,8 @@ export default function Signup() {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,27 +25,23 @@ export default function Signup() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json().catch(() => null);
-      console.log("🔍 Response:", data);
+      const data = await res.json();
 
       if (res.ok) {
-        alert("Signup successful!");
-        setFormData({ name: "", email: "", password: "" });
+
+        // 🔥 Redirect after success
+        navigate("/home");
       } else {
         alert(data?.message || "Signup failed!");
       }
     } catch (error) {
-      console.error("Network error during signup:", error);
-      alert("Something went wrong! Check console for details.");
+      alert("Something went wrong!");
     }
   };
 
   return (
     <div className="auth-wrapper">
-
       <div className="auth-card">
-
-        {/* Tabs */}
         <div className="auth-tabs">
           <Link to="/">Sign In</Link>
           <span className="active">Sign Up</span>
@@ -57,7 +55,6 @@ export default function Signup() {
           <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
           <button type="submit" className="auth-btn">Sign Up</button>
         </form>
-
       </div>
     </div>
   );
