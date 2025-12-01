@@ -1,0 +1,517 @@
+.my-posts-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 40px 60px 80px;
+  background-image: url("https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+/* Header */
+.my-posts-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* .my-posts-header h2 {
+  font-size: 50px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: white;
+  text-align: center;
+} */
+
+.my-posts-header h2 {
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: white;
+  text-align: center;
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  display: inline-block;
+}
+
+
+/* .my-posts-header p {
+  font-size: 30px;
+  color: white;
+  font-weight: 700;
+ 
+} */
+
+
+/* .my-posts-header p {
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  padding: 10px 22px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 10px;
+} */
+
+
+
+
+.add-post-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.add-post-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.3);
+}
+
+/* Error & Empty states */
+.my-posts-error {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.my-posts-empty {
+  margin-top: 60px;
+  text-align: center;
+  color: #6b7280;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Grid */
+.my-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 420px));
+  gap: 30px;
+  justify-content: center;
+  align-items: start;
+  padding-top: 10px;
+}
+
+/* Card */
+/* .post-card {
+  background: #ffffff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+} */
+
+/* .post-card {
+  width: 420px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: 0.25s ease;
+} */
+
+
+.post-card {
+  width: 100%;
+  height: 500px;
+  max-width: 420px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+/* 
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+} */
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.35);
+}
+
+.post-image-wrapper {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.post-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.45s ease;
+}
+
+.post-card:hover img {
+  transform: scale(1.06);
+}
+
+.post-card:hover .post-image-wrapper img {
+  transform: scale(1.03);
+}
+
+/* .post-category-pill {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #f9fafb;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+} */
+
+.post-category-pill {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 6px 14px;
+  font-size: 11px;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+}
+
+/* Content */
+.post-content {
+  padding: 16px 18px;
+  gap: 6px;
+}
+
+.post-main h3 {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #111827;
+  text-align: left;
+  text-transform: uppercase;
+
+}
+
+.post-location {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.post-description {
+  font-size: 16px;
+  color: white;
+  line-height: 1.5;
+  max-height: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-weight: 700;
+}
+
+
+.post-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.post-rating {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: black;
+  color: white;
+}
+
+.post-verified {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #166534;
+}
+
+/* Actions */
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.edit-btn {
+  background: whitesmoke;
+  color: black;
+}
+
+.edit-btn:hover {
+  background: #28e745;
+}
+
+.delete-btn {
+  background: whitesmoke;
+  color: black;
+}
+
+.delete-btn:hover {
+  background: #ec5d5d;
+}
+
+/* -------- MODAL -------- */
+
+.mp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.46);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+}
+
+.mp-modal {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+  padding: 20px 22px 18px;
+  animation: mp-fade-up 0.2s ease-out;
+}
+
+@keyframes mp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.mp-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mp-modal-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.mp-close {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+/* Form */
+.mp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mp-form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mp-form-row label {
+  flex: 1;
+}
+
+.mp-full {
+  width: 100%;
+}
+
+.mp-form label {
+  font-size: 13px;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mp-form input,
+.mp-form select,
+.mp-form textarea {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 8px 10px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mp-form textarea {
+  resize: vertical;
+}
+
+.mp-form input:focus,
+.mp-form select:focus,
+.mp-form textarea:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 1px #11182711;
+}
+
+.mp-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.mp-primary,
+.mp-secondary {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.mp-secondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.mp-secondary:hover {
+  background: #e5e7eb;
+}
+
+.mp-primary {
+  background: #111827;
+  color: #ffffff;
+}
+
+.mp-primary:hover {
+  background: #000000;
+}
+
+
+/* ---------- EMPTY UI ---------- */
+
+.empty-wrapper {
+  width: 100%;
+  padding: 120px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.empty-illustration {
+  width: 160px;
+  height: auto;
+  opacity: 0.9;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.empty-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111;
+  margin-top: 12px;
+}
+
+.empty-text {
+  font-size: 15px;
+  color: #555;
+  max-width: 350px;
+  line-height: 1.5;
+}
+
+.primary-btn {
+  margin-top: 10px;
+  background: #0d1726;
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 30px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.primary-btn:hover {
+  background: #18293f;
+  transform: scale(1.05);
+}
+
+/* Smooth pop animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------- RESPONSIVE -------- */
+
+@media (max-width: 900px) {
+  .my-posts-page {
+    padding: 28px 18px 60px;
+  }
+
+  .my-posts-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .mp-form-row {
+    flex-direction: column;
+  }
+}
+
+ /* in this card is style in bad way , fix card styling , it looks very un even , and does not look good at all , fix it  */

@@ -3,44 +3,39 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import Explore from "./Explore";
 import Map from "./Map";
-import Gallery from "./Gallery"; // 💛 Import Gallery
+import Gallery from "./Gallery";
+import MyPosts from "./MyPosts";
 
 export default function Home() {
   const navigate = useNavigate();
 
-  // ❤️ Refs for smooth scrolling
+  // Smooth scroll references
   const exploreRef = useRef(null);
   const mapRef = useRef(null);
   const galleryRef = useRef(null);
+  const myPostsRef = useRef(null);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
 
-  const scrollToExplore = () => {
-    exploreRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToMap = () => {
-    mapRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToGallery = () => {
-    galleryRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  // Scroll functions
+  const scrollToExplore = () => exploreRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToMap = () => mapRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToGallery = () => galleryRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToMyPosts = () => myPostsRef.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div className="home-container">
-      
-      {/* ------------ FIRST DIV: NAVBAR TO SEARCH BOX ------------ */}
+
+      {/* 🌍 HERO SECTION + NAVBAR */}
       <div
         className="hero-wrapper"
         style={{
           backgroundImage: `url("https://wallpapercat.com/w/full/4/c/2/17001-3840x2160-desktop-4k-mountain-wallpaper.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
           minHeight: "100vh",
         }}
       >
@@ -54,6 +49,7 @@ export default function Home() {
             <li onClick={scrollToExplore}>Explore</li>
             <li onClick={scrollToMap}>Map</li>
             <li onClick={scrollToGallery}>Gallery</li>
+            <li onClick={scrollToMyPosts}>My Posts</li>
             <li onClick={() => navigate("/profile")}>Profile</li>
           </ul>
 
@@ -62,18 +58,15 @@ export default function Home() {
           </button>
         </nav>
 
-        {/* ------------ HERO SECTION ------------ */}
         <div className="hero-section">
           <div className="hero-subtag">Travel Smart, Travel Safe</div>
-          <h1 className="hero-title">
-            Explore the World, One Journey at a Time.
-          </h1>
+          <h1 className="hero-title">Explore the World, One Journey at a Time.</h1>
           <p className="hero-desc">
-            A safe space for solo travelers to discover verified places and connect.
+            A safe space for solo travelers to discover verified places and connect meaningfully.
           </p>
         </div>
 
-        {/* ------------ SEARCH BOX ------------ */}
+        {/* SEARCH BOX */}
         <div className="search-box">
           <div className="search-header">
             <button className="active">All Residences</button>
@@ -117,20 +110,26 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ------------ EXPLORE SECTION ------------ */}
-      <div ref={exploreRef} className="explore-wrapper" style={{ background: "white", padding: "20px 0", minHeight: "100vh" }}>
+      {/* 🔎 EXPLORE SECTION */}
+      <div ref={exploreRef} className="explore-wrapper" style={{ background: "white", padding: "50px 0" }}>
         <Explore />
       </div>
 
-      {/* ------------ MAP SECTION ------------ */}
+      {/* 🗺 MAP SECTION */}
       <div ref={mapRef} className="map-wrapper">
         <Map embedded />
       </div>
 
-      {/* ------------ GALLERY SECTION ------------ */}
+      {/* 🖼 GALLERY SECTION */}
       <div ref={galleryRef} className="gallery-wrapper">
         <Gallery />
       </div>
+
+      {/* 📝 MY POSTS SECTION */}
+      <div ref={myPostsRef} className="myposts-wrapper">
+        <MyPosts />
+      </div>
+
     </div>
   );
 }

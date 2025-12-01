@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery"; // <-- FIXED IMPORT
+import MyPosts from "./pages/MyPosts";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} /> 
+        <Route path="/my-posts" element={<MyPosts />} />
       </Routes>
     </Router>
   );
