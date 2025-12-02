@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import Gallery from "./pages/Gallery"; // <-- FIXED IMPORT
 import MyPosts from "./pages/MyPosts";
 
+import "leaflet/dist/leaflet.css";
+
+
 export default function App() {
   return (
     <Router>
