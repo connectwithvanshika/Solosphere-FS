@@ -5,7 +5,7 @@
 }
 
 .explore-title {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
   color: black;
@@ -18,6 +18,7 @@
 }
 .location {
     color: black;
+    margin: 2px;
 }
 
 /* ---- HORIZONTAL SCROLL CAROUSEL ---- */
@@ -40,21 +41,31 @@
 }
 
 /* Card */
+/* Card */
 .card {
-  background: white;
+  background: #ffffff;
   width: 280px;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0px 4px 16px rgba(0,0,0,0.08);
-  transition: 0.3s;
+
+  /* ✨ Bluish glow + soft elevation */
+  box-shadow:
+    10px 10px 18px rgba(0, 118, 155, 0.25),  /* outer blue ambient glow */
+    10px 10px 20px rgba(0, 0, 0, 0.08);      /* soft normal shadow */
+
+  transition: 0.35s ease;
   scroll-snap-align: start;
   flex-shrink: 0;
   position: relative;
-  
 }
 
+/* Hover effect: stronger blue glow */
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.02);
+
+  box-shadow:
+    0px 0px 28px rgba(0, 162, 255, 0.40), /* stronger glow */
+    0px 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .card img {
@@ -77,30 +88,38 @@
 
 /* Text */
 .card-content {
-  padding: 15px;
+  padding: 10px;
   color: black;
 }
 
 .rating {
-  margin: 6px 0;
-}
-
-.view-btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 12px;
   background: black;
   color: white;
-  border: none;
-  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 18px;
+  width: fit-content;
+  margin: 10px auto;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
 }
+
+
+
+
+
 
 /* Expanded state */
 .details {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
   animation: fadeIn .3s ease;
   color: black;
+  font-weight: 700;
 }
 
 @keyframes fadeIn {
