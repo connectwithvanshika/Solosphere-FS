@@ -1,3 +1,6 @@
+
+
+
 import express from "express";
 import Post from "../models/Post.js";
 
@@ -23,6 +26,15 @@ router.post("/", async (req, res) => {
     res.status(201).json(post);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/mine", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
