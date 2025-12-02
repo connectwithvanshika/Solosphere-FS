@@ -1,3 +1,6 @@
+
+
+
 // import express from "express";
 // import cors from "cors";
 // import dotenv from "dotenv";
@@ -6,19 +9,15 @@
 // import authRoutes from "./routes/authRoutes.js";
 // import postRoutes from "./routes/postRoutes.js";
 
+// // Load environment variables first
+// dotenv.config();
 
 // const app = express();
 
-// dotenv.config();
-
-
-// app.use("/api/posts", postRoutes);
-
-
-
+// /* -------- CORS MUST COME BEFORE ROUTES -------- */
 // const allowedOrigins = [
 //   "http://localhost:5173",
-//   "https://solosphere-fs.vercel.app"
+//   "https://solosphere-fs.vercel.app",
 // ];
 
 // app.use(
@@ -30,23 +29,30 @@
 //   })
 // );
 
+// // JSON parser
 // app.use(express.json());
 
+// /* -------- ROUTES -------- */
+// app.use("/api/auth", authRoutes);
+// app.use("/api/posts", postRoutes);
+
+// // Test Route
 // app.get("/", (req, res) => {
 //   res.json({ message: "Backend working correctly ✔️" });
 // });
 
-// app.use("/api/auth", authRoutes);
-// app.use("/api/posts", postRoutes);
-
-// const PORT = process.env.PORT || 5000;
-
+// /* -------- SERVER + DB -------- */
 // await connectDB();
 // console.log("MongoDB Connected 🤍");
 
-// app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
+// const PORT = process.env.PORT || 5001;
+
+// app.listen(PORT, () =>
+//   console.log(`🚀 Backend running on port ${PORT}`)
+// );
 
 // export default app;
+
 
 
 
@@ -58,12 +64,12 @@ import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 
-// Load environment variables first
+// Load environment variables
 dotenv.config();
 
 const app = express();
 
-/* -------- CORS MUST COME BEFORE ROUTES -------- */
+/* -------------------- CORS CONFIG -------------------- */
 const allowedOrigins = [
   "http://localhost:5173",
   "https://solosphere-fs.vercel.app",
@@ -78,26 +84,31 @@ app.use(
   })
 );
 
-// JSON parser
 app.use(express.json());
 
-/* -------- ROUTES -------- */
+/* -------------------- ROUTES -------------------- */
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "Backend Running Successfully ✔️" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 
-// Test Route
-app.get("/", (req, res) => {
-  res.json({ message: "Backend working correctly ✔️" });
-});
-
-/* -------- SERVER + DB -------- */
+/* -------------------- DATABASE & SERVER -------------------- */
 await connectDB();
-console.log("MongoDB Connected 🤍");
+console.log("📌 MongoDB Connected Successfully");
 
-const PORT = process.env.PORT || 5001;
+/*
+  Local development uses app.listen(),
+  Vercel Serverless deployment DOES NOT use app.listen().
+*/
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () =>
+    console.log(`🚀 Local Backend running on http://localhost:${PORT}`)
+  );
+}
 
-app.listen(PORT, () =>
-  console.log(`🚀 Backend running on port ${PORT}`)
-);
-
+// Export for Vercel serverless
 export default app;
+
