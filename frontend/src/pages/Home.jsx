@@ -5,6 +5,7 @@ import Explore from "./Explore";
 import Map from "./Map";
 import Gallery from "./Gallery";
 import MyPosts from "./MyPosts";
+import Footer from "./Footer";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -21,14 +22,17 @@ export default function Home() {
   };
 
   // Scroll functions
-  const scrollToExplore = () => exploreRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToMap = () => mapRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToGallery = () => galleryRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToMyPosts = () => myPostsRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToExplore = () =>
+    exploreRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToMap = () =>
+    mapRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToGallery = () =>
+    galleryRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToMyPosts = () =>
+    myPostsRef.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div className="home-container">
-
       {/* 🌍 HERO SECTION + NAVBAR */}
       <div
         className="hero-wrapper"
@@ -60,9 +64,12 @@ export default function Home() {
 
         <div className="hero-section">
           <div className="hero-subtag">Travel Smart, Travel Safe</div>
-          <h1 className="hero-title">Explore the World, One Journey at a Time.</h1>
+          <h1 className="hero-title">
+            Explore the World, One Journey at a Time.
+          </h1>
           <p className="hero-desc">
-            A safe space for solo travelers to discover verified places and connect meaningfully.
+            A safe space for solo travelers to discover verified places and
+            connect meaningfully.
           </p>
         </div>
 
@@ -111,7 +118,11 @@ export default function Home() {
       </div>
 
       {/* 🔎 EXPLORE SECTION */}
-      <div ref={exploreRef} className="explore-wrapper" style={{ background: "white", padding: "50px 0" }}>
+      <div
+        ref={exploreRef}
+        className="explore-wrapper"
+        style={{ background: "white", padding: "50px 0" }}
+      >
         <Explore />
       </div>
 
@@ -130,6 +141,9 @@ export default function Home() {
         <MyPosts />
       </div>
 
+      {/* <Footer /> */}
+
+      <Footer onExplore={scrollToExplore} onMap={scrollToMap} />
     </div>
   );
 }

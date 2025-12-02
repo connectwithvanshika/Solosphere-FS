@@ -42,6 +42,7 @@ html, body {
 .home-container {
   width: 100%;
   height: 100vh;
+  /* min-height: 100vh; */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -52,6 +53,14 @@ html, body {
   overflow-y: auto; 
   padding: 0;
 
+}
+
+.gallery-wrapper,
+.myposts-wrapper,
+.map-wrapper,
+.explore-wrapper {
+  margin-bottom: 0; /* remove unwanted spacing */
+  padding-bottom: 0;
 }
 
 
