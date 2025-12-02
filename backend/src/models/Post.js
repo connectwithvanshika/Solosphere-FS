@@ -38,7 +38,7 @@ const postSchema = new mongoose.Schema(
     // ⭐ FILTERING FIELDS
     category: {
       type: String,
-      enum: ["Hostel", "Café", "Apartment", "Camp", "Stay", "Safe"],
+      enum: ["Hostel", "Apartment", "Camp", "Private Stay", "Shared"],
       required: false,
     },
 

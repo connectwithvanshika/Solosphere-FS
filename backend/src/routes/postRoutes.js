@@ -38,27 +38,85 @@ router.get("/mine", async (req, res) => {
   }
 });
 
-// ⭐ FILTER + SEARCH LOGIC
+// // ⭐ FILTER + SEARCH LOGIC
+// router.get("/", async (req, res) => {
+//   try {
+//     const { city = "", category = "", tags = "" } = req.query;
+
+//     const filter = {};
+
+//     if (city) filter.city = new RegExp(city, "i");
+//     if (category) filter.category = new RegExp(category, "i");
+
+//     if (tags) {
+//       filter.tags = { $in: tags.split(",") }; // multiple filter support
+//     }
+
+//     const posts = await Post.find(filter).sort({ createdAt: -1 });
+//     res.json(posts);
+
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
+
+
+
+// ⭐ UNIVERSAL SEARCH + FILTER + SORT + PAGINATION
 router.get("/", async (req, res) => {
   try {
-    const { city = "", category = "", tags = "" } = req.query;
+    const {
+      city = "",
+      category = "",
+      tags = "",
+      guests = "",
+      checkin = "",
+      checkout = "",
+      sort = "recent",
+      page = 1,
+      limit = 10
+    } = req.query;
 
     const filter = {};
 
     if (city) filter.city = new RegExp(city, "i");
-    if (category) filter.category = new RegExp(category, "i");
+    if (category && category !== "all") filter.category = new RegExp(category, "i");
+    if (tags) filter.tags = { $in: tags.split(",") };
+    if (guests) filter.guests = { $gte: Number(guests) };
 
-    if (tags) {
-      filter.tags = { $in: tags.split(",") }; // multiple filter support
+    // (Optional future: availability filtering)
+    if (checkin && checkout) {
+      filter.availableFrom = { $lte: new Date(checkin) };
+      filter.availableTo = { $gte: new Date(checkout) };
     }
 
-    const posts = await Post.find(filter).sort({ createdAt: -1 });
-    res.json(posts);
+    // Sorting logic
+    let sortOption = {};
+    if (sort === "rating") sortOption.rating = -1;
+    else if (sort === "recent") sortOption.createdAt = -1;
+    else sortOption.createdAt = -1;
+
+    const skip = (page - 1) * limit;
+
+    const posts = await Post.find(filter)
+      .sort(sortOption)
+      .skip(skip)
+      .limit(Number(limit));
+
+    const total = await Post.countDocuments(filter);
+
+    res.json({
+      success: true,
+      total,
+      page: Number(page),
+      results: posts
+    });
 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 // UPDATE POST
 router.put("/:id", async (req, res) => {
