@@ -119,7 +119,7 @@ export default function Explore() {
       verified: true,
       category: "Hostel",
       saved: false,
-      image: "",
+      image: "https://journeywoman.com/wp-content/uploads/2017/07/hotel-safety-tip.jpg",
       description:
         "Women-only hostel with fingerprint access, reading areas, and shared kitchen."
     },
@@ -132,7 +132,7 @@ export default function Explore() {
       verified: false,
       category: "Hostel",
       saved: false,
-      image: "",
+      image: "https://media.istockphoto.com/id/1151357999/photo/beautiful-woman-laying-and-enjoying-breakfast-in-bed.jpg?s=612x612&w=0&k=20&c=vvu09PfKJ5VeL6DFI6PqxO27aLmNWNqC9rM7hV4PIGo=",
       description:
         "Friendly community hostel for women with cultural events and shared workspace."
     },
@@ -145,7 +145,7 @@ export default function Explore() {
       verified: true,
       category: "Hostel",
       saved: false,
-      image: "",
+      image: "https://gos3.ibcdn.com/a668156276d611e98b8c0242ac110008.jpg",
       description:
         "Comfortable modern women’s hostel with gym, cafe lounge, and lockers."
     },
@@ -160,7 +160,7 @@ export default function Explore() {
       verified: true,
       category: "Café",
       saved: false,
-      image: "",
+      image: "https://cdn.prod.website-files.com/60414b21f1ffcdbb0d5ad688/656794b84c74fd60a580c975_sincerely-media-VNsdEl1gORk-unsplash.jpg",
       description:
         "Beachside café with journaling corners, soft music, and amazing cold coffee."
     },
@@ -173,7 +173,7 @@ export default function Explore() {
       verified: false,
       category: "Café",
       saved: false,
-      image: "",
+      image: "https://www.ceebeedesignstudio.com/assets/img/blog/blog-21/best-interiors-in-bangalore-25-11-2024.jpg",
       description:
         "A peaceful café for remote workers with fast Wi-Fi and phone-free zones."
     },
@@ -188,7 +188,7 @@ export default function Explore() {
       verified: true,
       category: "Apartment",
       saved: false,
-      image: "",
+      image: "https://www.dc.umich.edu/wp-content/uploads/sites/487/2023/07/StudioB_HDR-1200x800.jpg",
       description:
         "Compact and secure independent studio for female travelers and remote workers."
     },
@@ -201,7 +201,7 @@ export default function Explore() {
       verified: false,
       category: "Apartment",
       saved: false,
-      image: "",
+      image: "https://housing.com/news/wp-content/uploads/2024/01/Flats-vs-compressed-1.jpg",
       description:
         "Serviced apartment with safety alarms, private kitchenette and workspace."
     },
@@ -216,7 +216,7 @@ export default function Explore() {
       verified: true,
       category: "Camp",
       saved: false,
-      image: "",
+      image: "https://images.unsplash.com/photo-1533575770077-052fa2c609fc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZXN0JTIwY2FtcHxlbnwwfHwwfHx8MA%3D%3D",
       description:
         "Nature escape with guided hikes, meditation deck, and women-only zones."
     },
@@ -229,7 +229,7 @@ export default function Explore() {
       verified: false,
       category: "Camp",
       saved: false,
-      image: "",
+      image: "https://i.redd.it/h0am54nruec01.jpg",
       description:
         "Adventure camping with safety protocols, bonfire, and mountain-view tents."
     }
