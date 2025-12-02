@@ -3,26 +3,34 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// const API_URL = "https://solosphere-fs.vercel.app/api/posts";
-const API_URL = "https://solosphere-fs-ycns.vercel.app/api/posts";
+const API_URL = import.meta.env.PROD 
+  ? "https://solosphere-fs.vercel.app/api/posts"
+  : "http://localhost:5001/api/posts";
 
 const GEOCODER_KEY = import.meta.env.VITE_GEOCODER_KEY;
 
-// Smooth fly animation controller
+// Filter options visible to user
+const FILTER_OPTIONS = [
+  { key: "cafe", label: "☕ Café" },
+  { key: "hostel", label: "🏨 Hostel" },
+  { key: "apartment", label: "🏠 Apartment" },
+  { key: "camp", label: "⛺ Camp" },
+  { key: "safe", label: "🛡 Safe" },
+  { key: "female-only", label: "👩‍🦰 Women Only" },
+];
+
 function FlyTo({ coords }) {
   const map = useMap();
-
   useEffect(() => {
     if (coords) map.flyTo(coords, 13, { duration: 2 });
   }, [coords]);
-
   return null;
 }
 
 export default function Map({ embedded }) {
   const [posts, setPosts] = useState([]);
-  const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(""); // ⭐ New
+  const [city, setCity] = useState("");
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [searchedCoords, setSearchedCoords] = useState(null);
 
   // Load all posts initially
@@ -30,105 +38,89 @@ export default function Map({ embedded }) {
     axios.get(API_URL).then((res) => setPosts(res.data));
   }, []);
 
-  // Search + filtering logic
+  const toggleFilter = (filter) => {
+    setSelectedFilters(prev =>
+      prev.includes(filter)
+        ? prev.filter(f => f !== filter)
+        : [...prev, filter]
+    );
+  };
+
   const handleSearch = async () => {
-    try {
-      // Fetch filtered posts from backend
-      const res = await axios.get(API_URL, {
-        params: {
-          q: search,
-          city: search,
-          category: selectedCategory,
-        },
-      });
-
-      setPosts(res.data);
-
-      if (res.data.length === 0) {
-        alert("No matching safe places found 🚫 Try another filter!");
+    const res = await axios.get(API_URL, {
+      params: {
+        city,
+        category: selectedFilters.find(f => ["cafe","hostel","camp","apartment"].includes(f)) || "",
+        tags: selectedFilters.join(",")
       }
+    });
 
-      // Zoom to searched city
-      if (search) {
-        const response = await fetch(
-          `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(search)}&key=${GEOCODER_KEY}&limit=1`
-        );
-        const data = await response.json();
+    setPosts(res.data);
 
-        if (data.results.length) {
-          const { lat, lng } = data.results[0].geometry;
-          setSearchedCoords([lat, lng]);
-        }
+    if (city.trim()) {
+      const geo = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${GEOCODER_KEY}`
+      );
+      const data = await geo.json();
+      
+      if (data.results.length) {
+        const { lat, lng } = data.results[0].geometry;
+        setSearchedCoords([lat, lng]);
       }
-    } catch (err) {
-      console.error(err);
-      alert("⚠️ Error while searching!");
     }
   };
 
   return (
     <div className={`map-page ${embedded ? "embedded" : ""}`}>
 
-      {/* Header */}
       <div className="map-header">
-        <h3>Search city → then apply filters 🔍</h3>
+        <h2>Find Safe Places Near You 🧭</h2>
+        <p>Search city → then apply filters 👇</p>
       </div>
 
-      {/* Search bar */}
+      {/* 🔍 Search Input */}
       <div className="map-controls">
         <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Mumbai, Delhi, Goa..."
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          placeholder="Search city (e.g., Delhi, Mumbai, Goa)"
         />
       </div>
 
-      {/* Category Filters */}
+      {/* ⭐ Filter Chips */}
       <div className="filter-chips">
-        {[
-          { label: "☕ Café", value: "cafe" },
-          { label: "🏨 Hostel", value: "hostel" },
-          { label: "🏠 Apartment", value: "apartment" },
-          { label: "⛺ Camp", value: "camp" },
-          { label: "🛡 Safe", value: "safe" },
-          { label: "👩 Women Only", value: "women-only" },
-        ].map(({ label, value }) => (
+        {FILTER_OPTIONS.map(({ key, label }) => (
           <button
-            key={value}
-            className={`chip ${selectedCategory === value ? "active" : ""}`}
-            onClick={() => setSelectedCategory(value === selectedCategory ? "" : value)}
+            key={key}
+            className={selectedFilters.includes(key) ? "chip active" : "chip"}
+            onClick={() => toggleFilter(key)}
           >
             {label}
           </button>
         ))}
       </div>
 
-      {/* Apply Button */}
-      <button className="apply-btn" onClick={handleSearch}>
-        Apply Filters
-      </button>
+      <button className="map-btn" onClick={handleSearch}>Apply Filters</button>
 
-      {/* Map */}
+      {/* MAP */}
       <MapContainer
         center={[20.5937, 78.9629]}
         zoom={5}
         scrollWheelZoom={true}
-        style={{ height: "450px", width: "100%", borderRadius: "20px", marginTop: "20px" }}
+        style={{ height: "450px", borderRadius: "20px", marginTop: "15px" }}
       >
         <FlyTo coords={searchedCoords} />
 
-        {/* OpenStreet Maps */}
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        {/* Show Map Markers */}
         {posts.map((p) =>
           p.lat && p.lng ? (
             <Marker key={p._id} position={[p.lat, p.lng]}>
               <Popup>
-                <strong>{p.title}</strong> <br />
-                📍 {p.city} <br />
-                🏷 {p.category} <br />
-                ⭐ {p.rating || "No rating"}
+                <strong>{p.title}</strong><br/>
+                📍 {p.city || "Unknown"}<br/>
+                🏷 {p.category}<br/>
+                ⭐ {p.rating || "No Rating"}
               </Popup>
             </Marker>
           ) : null

@@ -27,23 +27,17 @@ router.post("/", async (req, res) => {
 });
 
 // ⭐ FILTER + SEARCH LOGIC
-// ⭐ FILTER + SEARCH
 router.get("/", async (req, res) => {
   try {
-    const { q, city, category } = req.query;
+    const { city = "", category = "", tags = "" } = req.query;
+
     const filter = {};
 
     if (city) filter.city = new RegExp(city, "i");
     if (category) filter.category = new RegExp(category, "i");
 
-    if (q) {
-      filter.$or = [
-        { title: new RegExp(q, "i") },
-        { description: new RegExp(q, "i") },
-        { tags: new RegExp(q, "i") },
-        { category: new RegExp(q, "i") },
-        { city: new RegExp(q, "i") },
-      ];
+    if (tags) {
+      filter.tags = { $in: tags.split(",") }; // multiple filter support
     }
 
     const posts = await Post.find(filter).sort({ createdAt: -1 });
@@ -53,7 +47,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 
 // UPDATE POST
 router.put("/:id", async (req, res) => {
