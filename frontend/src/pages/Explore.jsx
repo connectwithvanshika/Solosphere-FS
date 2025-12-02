@@ -8,7 +8,8 @@ export default function Explore() {
 
   const categories = ["All", "Hostel", "Café", "Apartment", "Camp"];
 
-  const places = [
+   const places = [
+    // -------- EXISTING DATA --------
     {
       id: 1,
       name: "Zostel Women’s Hostel",
@@ -106,6 +107,131 @@ export default function Explore() {
         "https://onekindesign.com/wp-content/uploads/2018/08/Built-In-Window-Seats-Capturing-Ocean-Views-08-1-Kindesign.jpg",
       description:
         "Ideal for solo women with secured entry, sea-facing windows and workspace setup."
+    },
+
+    // -------- NEW HOSTELS --------
+    {
+      id: 8,
+      name: "SafeStay Women Hostel",
+      city: "Delhi, India",
+      rating: 4.7,
+      reviews: 201,
+      verified: true,
+      category: "Hostel",
+      saved: false,
+      image: "",
+      description:
+        "Women-only hostel with fingerprint access, reading areas, and shared kitchen."
+    },
+    {
+      id: 9,
+      name: "PinkNest Ladies Hostel",
+      city: "Jaipur, India",
+      rating: 4.6,
+      reviews: 158,
+      verified: false,
+      category: "Hostel",
+      saved: false,
+      image: "",
+      description:
+        "Friendly community hostel for women with cultural events and shared workspace."
+    },
+    {
+      id: 10,
+      name: "Urban Oasis Co-Hostel",
+      city: "Hyderabad, India",
+      rating: 4.5,
+      reviews: 142,
+      verified: true,
+      category: "Hostel",
+      saved: false,
+      image: "",
+      description:
+        "Comfortable modern women’s hostel with gym, cafe lounge, and lockers."
+    },
+
+    // -------- NEW CAFÉS --------
+    {
+      id: 11,
+      name: "Soul Brew Café",
+      city: "Goa, India",
+      rating: 4.8,
+      reviews: 301,
+      verified: true,
+      category: "Café",
+      saved: false,
+      image: "",
+      description:
+        "Beachside café with journaling corners, soft music, and amazing cold coffee."
+    },
+    {
+      id: 12,
+      name: "Quiet Corner Workspace Café",
+      city: "Kolkata, India",
+      rating: 4.7,
+      reviews: 192,
+      verified: false,
+      category: "Café",
+      saved: false,
+      image: "",
+      description:
+        "A peaceful café for remote workers with fast Wi-Fi and phone-free zones."
+    },
+
+    // -------- NEW APARTMENTS --------
+    {
+      id: 13,
+      name: "Serene Heights Studio",
+      city: "Chandigarh, India",
+      rating: 4.8,
+      reviews: 88,
+      verified: true,
+      category: "Apartment",
+      saved: false,
+      image: "",
+      description:
+        "Compact and secure independent studio for female travelers and remote workers."
+    },
+    {
+      id: 14,
+      name: "Palm Residency Flats",
+      city: "Chennai, India",
+      rating: 4.6,
+      reviews: 133,
+      verified: false,
+      category: "Apartment",
+      saved: false,
+      image: "",
+      description:
+        "Serviced apartment with safety alarms, private kitchenette and workspace."
+    },
+
+    // -------- NEW CAMPS --------
+    {
+      id: 15,
+      name: "Forest Haven Eco-Camp",
+      city: "Munnar, India",
+      rating: 4.8,
+      reviews: 261,
+      verified: true,
+      category: "Camp",
+      saved: false,
+      image: "",
+      description:
+        "Nature escape with guided hikes, meditation deck, and women-only zones."
+    },
+    {
+      id: 16,
+      name: "Moonlight Adventure Camp",
+      city: "Kedarnath, India",
+      rating: 4.6,
+      reviews: 120,
+      verified: false,
+      category: "Camp",
+      saved: false,
+      image: "",
+      description:
+        "Adventure camping with safety protocols, bonfire, and mountain-view tents."
     }
   ];
 
