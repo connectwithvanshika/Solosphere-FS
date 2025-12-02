@@ -16,9 +16,10 @@
   color: black;
   margin-bottom: 30px;
 }
+
 .location {
-    color: black;
-    margin: 2px;
+  color: black;
+  margin: 2px;
 }
 
 /* ---- HORIZONTAL SCROLL CAROUSEL ---- */
@@ -29,6 +30,8 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 20px 40px;
+  margin-left: 20px;
+  /* margin-right: 20px; */
 }
 
 .carousel::-webkit-scrollbar {
@@ -50,8 +53,10 @@
 
   /* ✨ Bluish glow + soft elevation */
   box-shadow:
-    10px 10px 18px rgba(0, 118, 155, 0.25),  /* outer blue ambient glow */
-    10px 10px 20px rgba(0, 0, 0, 0.08);      /* soft normal shadow */
+    10px 10px 18px rgba(0, 118, 155, 0.25),
+    /* outer blue ambient glow */
+    10px 10px 20px rgba(0, 0, 0, 0.08);
+  /* soft normal shadow */
 
   transition: 0.35s ease;
   scroll-snap-align: start;
@@ -64,7 +69,8 @@
   transform: translateY(-6px) scale(1.02);
 
   box-shadow:
-    0px 0px 28px rgba(0, 162, 255, 0.40), /* stronger glow */
+    0px 0px 28px rgba(0, 162, 255, 0.40),
+    /* stronger glow */
     0px 10px 25px rgba(0, 0, 0, 0.12);
 }
 
@@ -105,7 +111,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -123,8 +129,15 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
@@ -164,4 +177,10 @@
 .filters button.active {
   background: black;
   color: white;
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    padding: 20px 10px;
+  }
 }
