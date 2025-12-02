@@ -275,7 +275,7 @@
   color: #e8e8e8;
   font-size: 15.5px;
   padding: 6px 0;
-  list-style: "•  ";
+  list-style: "";
 }
 
 /* separator line */
@@ -338,6 +338,8 @@
     font-size: 15px;
   }
 }
+
+
 
 
 /* Animation */
