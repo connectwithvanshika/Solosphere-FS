@@ -9,15 +9,129 @@ const API_URL = import.meta.env.PROD
 
 const GEOCODER_KEY = import.meta.env.VITE_GEOCODER_KEY;
 
-// Filter options visible to user
-const FILTER_OPTIONS = [
-  { key: "cafe", label: "☕ Café" },
-  { key: "hostel", label: "🏨 Hostel" },
-  { key: "apartment", label: "🏠 Apartment" },
-  { key: "camp", label: "⛺ Camp" },
-  { key: "safe", label: "🛡 Safe" },
-  { key: "female-only", label: "👩‍🦰 Women Only" },
-];
+// ⭐ Static City Info (You can later fetch from API)
+const CITY_DATA = {
+  delhi: {
+    name: "Delhi",
+    places: [
+      "India Gate",
+      "Qutub Minar",
+      "Red Fort",
+      "Lotus Temple"
+    ],
+    description: "Delhi, the capital of India, is a mix of modern city vibes and rich Mughal history.",
+    safety: "Moderate — Avoid late-night solo walking in crowded or isolated areas."
+  },
+
+  mumbai: {
+    name: "Mumbai",
+    places: [
+      "Marine Drive",
+      "Gateway of India",
+      "Bandra Fort",
+      "Juhu Beach"
+    ],
+    description: "Mumbai is known as the City of Dreams — home to Bollywood, beaches and nightlife.",
+    safety: "Good — Public transport available almost 24/7."
+  },
+
+  goa: {
+    name: "Goa",
+    places: [
+      "Baga Beach",
+      "Fort Aguada",
+      "Dudhsagar Falls",
+      "Basilica of Bom Jesus"
+    ],
+    description: "Goa is a famous tourist destination with golden beaches, nightlife and Portuguese heritage.",
+    safety: "Safe — But avoid isolated beaches late night."
+  },
+
+  jaipur: {
+    name: "Jaipur",
+    places: [
+      "Hawa Mahal",
+      "Amber Fort",
+      "City Palace",
+      "Jal Mahal"
+    ],
+    description: "Jaipur, also known as the Pink City, is known for its royal heritage and iconic palaces.",
+    safety: "Safe — Tourist-friendly, but avoid crowded bazaars late night."
+  },
+
+  kolkata: {
+    name: "Kolkata",
+    places: [
+      "Victoria Memorial",
+      "Howrah Bridge",
+      "Dakshineswar Temple",
+      "Eco Park"
+    ],
+    description: "Kolkata is known for art, culture, literature and colonial-era architecture.",
+    safety: "Moderate — Safe but better to avoid late travel in isolated zones."
+  },
+
+  chennai: {
+    name: "Chennai",
+    places: [
+      "Marina Beach",
+      "Kapaleeshwarar Temple",
+      "Fort St. George",
+      "Mahabalipuram"
+    ],
+    description: "Chennai is a coastal metro known for temples, beaches and classical art.",
+    safety: "Safe — One of India's safest metro cities."
+  },
+
+  bangalore: {
+    name: "Bangalore",
+    places: [
+      "Lalbagh",
+      "Cubbon Park",
+      "Vidhana Soudha",
+      "Nandi Hills"
+    ],
+    description: "Bangalore is India's IT hub with a mix of greenery, startups and nightlife.",
+    safety: "Good — Safe for solo travelers with public transport available."
+  },
+
+  hyderabad: {
+    name: "Hyderabad",
+    places: [
+      "Charminar",
+      "Golconda Fort",
+      "Ramoji Film City",
+      "Hussain Sagar Lake"
+    ],
+    description: "Hyderabad blends modern tech with rich Nawabi culture and famous biryani.",
+    safety: "Safe — Tourist-friendly but avoid isolated late-night travel."
+  },
+
+  kerala: {
+    name: "Kerala",
+    places: [
+      "Alleppey Backwaters",
+      "Munnar",
+      "Kovalam Beach",
+      "Thekkady Wildlife Sanctuary"
+    ],
+    description: "Kerala is known as 'God’s Own Country' with backwaters, green hills and calm beaches.",
+    safety: "Very Safe — Known for peace, tourism and hospitality."
+  },
+
+  rishikesh: {
+    name: "Rishikesh",
+    places: [
+      "Lakshman Jhula",
+      "Ram Jhula",
+      "Neelkanth Temple",
+      "Ganga Aarti (Triveni Ghat)"
+    ],
+    description: "Rishikesh is the yoga capital of the world and a hub for spirituality & adventure sports.",
+    safety: "Safe — Popular among solo and women travelers."
+  }
+};
+
 
 function FlyTo({ coords }) {
   const map = useMap();
@@ -32,6 +146,7 @@ export default function Map({ embedded }) {
   const [city, setCity] = useState("");
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [searchedCoords, setSearchedCoords] = useState(null);
+  const [cityInfo, setCityInfo] = useState(null); // 👈 New state
 
   // Load all posts initially
   useEffect(() => {
@@ -57,6 +172,14 @@ export default function Map({ embedded }) {
 
     setPosts(res.data);
 
+    // 📌 Set famous places card if city exists
+    const key = city.trim().toLowerCase();
+    if (CITY_DATA[key]) {
+      setCityInfo(CITY_DATA[key]);
+    } else {
+      setCityInfo(null);
+    }
+
     if (city.trim()) {
       const geo = await fetch(
         `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${GEOCODER_KEY}`
@@ -74,8 +197,8 @@ export default function Map({ embedded }) {
     <div className={`map-page ${embedded ? "embedded" : ""}`}>
 
       <div className="map-header">
-        <h2>Find Safe Places Near You 🧭</h2>
-        <p>Search city → then apply filters 👇</p>
+        <h2>Find Safe Places Near You </h2>
+        {/* <p>Type a city and apply filters</p> */}
       </div>
 
       {/* 🔍 Search Input */}
@@ -87,9 +210,16 @@ export default function Map({ embedded }) {
         />
       </div>
 
-      {/* ⭐ Filter Chips */}
+      {/* ⭐ Filter Chips
       <div className="filter-chips">
-        {FILTER_OPTIONS.map(({ key, label }) => (
+        {[
+          { key: "cafe", label: "☕ Café" },
+          { key: "hostel", label: "🏨 Hostel" },
+          { key: "apartment", label: "🏠 Apartment" },
+          { key: "camp", label: "⛺ Camp" },
+          { key: "safe", label: "🛡 Safe" },
+          { key: "female-only", label: "👩‍🦰 Women Only" },
+        ].map(({ key, label }) => (
           <button
             key={key}
             className={selectedFilters.includes(key) ? "chip active" : "chip"}
@@ -98,11 +228,28 @@ export default function Map({ embedded }) {
             {label}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <button className="map-btn" onClick={handleSearch}>Apply Filters</button>
 
-      {/* MAP */}
+      {/* 🌍 CITY INFO CARD */}
+      {cityInfo && (
+        <div className="city-info-card">
+          <h3>{cityInfo.name}</h3>
+          <p>{cityInfo.description}</p>
+
+          <strong>Famous Places:</strong>
+          <ul>
+            {cityInfo.places.map((p, i) => (
+              <li key={i}>• {p}</li>
+            ))}
+          </ul>
+
+          <p><strong>Safety Tips:</strong> {cityInfo.safety}</p>
+        </div>
+      )}
+
+      {/* 🗺 MAP */}
       <MapContainer
         center={[20.5937, 78.9629]}
         zoom={5}

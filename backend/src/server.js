@@ -7,36 +7,37 @@ import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 
 dotenv.config();
+
 const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://solosphere-fs.vercel.app",
-  "https://solosphere-fs-ycns.vercel.app"   // VERY IMPORTANT
+  "https://solosphere-fs.vercel.app"
 ];
 
 app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-// required for browser OPTIONS request
-app.options("*", cors());
-
 app.use(express.json());
 
-app.get("/", (req, res) => res.json({ message: "Backend Running 🟢" }));
+app.get("/", (req, res) => {
+  res.json({ message: "Backend working correctly ✔️" });
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 
-await connectDB();
-console.log("MongoDB Connected 🚀");
+const PORT = process.env.PORT || 5000;
 
-app.listen(5000, () => console.log(`Backend running on PORT 5000`));
+await connectDB();
+console.log("MongoDB Connected 🤍");
+
+app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
 
 export default app;

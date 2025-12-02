@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
-import API_BASE from "../api"; // ⭐ important
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -15,34 +14,39 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${API_BASE}/auth/login`, {
+      const res = await fetch("http://localhost:5001/api/auth/login", {
         method: "POST",
+        credentials: "include", // ⭐ IMPORTANT
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // ⭐ required for cookies/auth
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
-      console.log("Response:", data);
+      console.log("Login Response:", data);
 
       if (res.ok) {
+        // ⭐ Save login info
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
+
+        // ⭐ Move to home page
         navigate("/home");
       } else {
-        alert(data?.message || "Login failed!");
+        alert(data?.message || "Invalid email or password!");
       }
-    } catch (err) {
-      console.error("Login Error:", err);
-      alert("⚠️ Unable to connect to server!");
+    } catch (error) {
+      console.error("Network error during login:", error);
+      alert("Server not responding! Check backend.");
     }
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
+
+        {/* Tabs */}
         <div className="auth-tabs">
           <span className="active">Sign In</span>
           <Link to="/signup">Sign Up</Link>
