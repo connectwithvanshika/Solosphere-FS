@@ -5,10 +5,11 @@ import { useRef, useState } from "react";
 import axios from "axios";
 
 import Explore from "./Explore";
-import Map from "./Map";
+// import Map from "./Map";
 import Gallery from "./Gallery";
 import MyPosts from "./MyPosts";
 import Footer from "./Footer";
+import TravelTips from "./TravelTips";
 
 const API_BASE =
   import.meta.env.MODE === "development"
@@ -219,7 +220,7 @@ export default function Home() {
       </div>
 
       <div ref={mapRef} className="map-wrapper">
-        <Map embedded />
+        <TravelTips embedded />
       </div>
 
       <div ref={galleryRef} className="gallery-wrapper">

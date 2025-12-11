@@ -1,0 +1,341 @@
+/* travel-tips.css - Styles for Travel Tips & Safety Guide */
+
+:root{
+  --bg: rgba(11, 15, 25, 0.55);
+  --glass: rgba(255,255,255,0.06);
+  --accent: #ffb454;
+  --muted: rgba(255,255,255,0.7);
+  --card-bg: rgba(255,255,255,0.95);
+  --text-dark: #111;
+}
+
+/* Section wrapper */
+.travel-tips-section{
+  width: 100%;
+  padding: 48px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:center;
+  /* background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.45)); */
+  min-height: 120vh;
+  background-image: url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  color: white;
+}
+
+/* Header */
+.tips-header{
+  width: 90%;
+  max-width: 1100px;
+  display:flex;
+  gap:20px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.tips-header h2{
+  font-size:40px;
+  margin:0;
+  letter-spacing:0.2px;
+  color: black;
+}
+
+.tips-header .subtitle{
+  margin:6px 0 0 0;
+  color: var(--muted);
+  font-size:18px;
+  color: black;
+}
+
+/* Search row */
+.search-row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.search-input{
+  padding:12px 14px;
+  border-radius:10px;
+  min-width:300px;
+  border:2px solid black;
+  outline:none;
+  font-size:14px;
+  background: rgba(255,255,255,0.12);
+  color: black;
+  backdrop-filter: blur(6px);
+}
+
+.select-filter{
+  padding:10px 12px;
+  border-radius:10px;
+  border:2px solid black;
+  background: rgba(255,255,255,0.08);
+  color: black;
+  font-size:17px;
+}
+
+/* Grid */
+.tips-grid{
+  width: 90%;
+  max-width: 1100px;
+  display:grid;
+  gap:20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items:stretch;
+}
+
+/* No results */
+.no-results{
+  width:100%;
+  padding:28px;
+  text-align:center;
+  color: #ffdede;
+  background: rgba(255,255,255,0.04);
+  border-radius:12px;
+}
+
+/* Tip card */
+.tip-card{
+  display:flex;
+  flex-direction:column;
+  border-radius:14px;
+  overflow:hidden;
+  background: var(--card-bg);
+  color: var(--text-dark);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+  transition: transform .22s ease, box-shadow .22s ease;
+  min-height: 360px;
+}
+
+.tip-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.12);
+}
+
+/* thumb image */
+.thumb{
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* verified badge */
+.badge{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  background: linear-gradient(90deg,var(--accent), #ff8b6b);
+  color: #111;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+  box-shadow: 0 6px 18px rgba(255,140,80,0.14);
+}
+
+/* body */
+.tip-body{
+  padding:16px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1;
+}
+
+.tip-title{
+  margin:0;
+  font-size:18px;
+  color: #0b1020;
+}
+
+.meta{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-top:2px;
+}
+
+.chip{
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(11,15,25,0.06);
+  color: #333;
+  font-size:12px;
+  font-weight:700;
+}
+
+.chip.muted{
+  background: rgba(11,15,25,0.02);
+  color: #666;
+  font-weight:600;
+}
+
+/* excerpt */
+.excerpt{
+  color:#333;
+  font-size:14px;
+  line-height:1.45;
+  flex:1;
+}
+
+/* actions */
+.card-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:flex-end;
+}
+
+.primary{
+  padding:8px 12px;
+  border-radius:10px;
+  background: linear-gradient(90deg,var(--accent), #ff8b6b);
+  border:none;
+  color:#07101b;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.outline{
+  padding:8px 12px;
+  border-radius:10px;
+  background:transparent;
+  border:1px solid rgba(11,15,25,0.06);
+  color:#333;
+  cursor:pointer;
+}
+
+/* pagination */
+.tips-pagination{
+  width:90%;
+  max-width:1100px;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:center;
+  margin-top:6px;
+}
+
+.tips-pagination button{
+  padding:8px 12px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.tips-pagination button:disabled{
+  opacity:0.45;
+  cursor:not-allowed;
+}
+
+.pages{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.page{
+  padding:8px 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius:8px;
+  color: white;
+  border:none;
+  cursor:pointer;
+}
+
+.page.active{
+  background: white;
+  color: #07101b;
+  font-weight:700;
+}
+
+/* Modal */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.48);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:60;
+  padding:20px;
+}
+
+.modal{
+  width:100%;
+  max-width:920px;
+  background: white;
+  color: #07101b;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow: 0 30px 80px rgba(2,6,23,0.45);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  right:12px;
+  top:12px;
+  background:transparent;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.modal-thumb{
+  height:220px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+
+.modal-body{
+  padding:20px 24px;
+}
+
+.modal-body h3{
+  margin:0 0 8px 0;
+}
+
+.modal-content{
+  white-space:pre-wrap;
+  background: #fbfbfb;
+  padding:12px;
+  border-radius:10px;
+  border: 1px solid #eee;
+  margin-top:12px;
+  color:#222;
+  max-height: 360px;
+  overflow:auto;
+}
+
+.modal-actions{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .tips-header{ gap:12px; }
+  .search-input{ min-width:160px; }
+  .thumb{ height:140px; }
+  .tip-card{ min-height:320px; }
+}
+
+@media (max-width:540px){
+  .tips-header{ flex-direction:column; align-items:stretch; gap:12px; }
+  .search-row{ justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  .search-input{ min-width:100%; }
+  .select-filter{ min-width:130px; }
+  .tips-grid{ grid-template-columns: 1fr; }
+  .modal{ padding-bottom:20px; }
+}
