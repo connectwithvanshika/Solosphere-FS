@@ -11,8 +11,9 @@ import TravelTips from "./TravelTips";
 
 const API_BASE =
   import.meta.env.MODE === "development"
-    ? "http://localhost:5001/api"
-    : "https://solosphere-fs-ycns.vercel.app/api";
+    ? "http://localhost:5001"
+    : "https://solosphere-backend.onrender.com";
+
 
 export default function Home() {
   const navigate = useNavigate();
@@ -52,7 +53,8 @@ export default function Home() {
       if (category) params.category = category;
       if (selectedTag) params.tags = selectedTag;
 
-      const res = await axios.get(`${API_BASE}/posts`, { params });
+      const res = await axios.get(`${API_BASE}/api/posts`, { params });
+
       setResults(res.data.results);
     } catch (err) {
       console.error("❌ Error:", err);
