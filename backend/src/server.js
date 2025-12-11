@@ -21,6 +21,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://solosphere-fs.vercel.app",
+  "https://solosphere-fs-ycns.vercel.app"
 ];
 
 app.use(
