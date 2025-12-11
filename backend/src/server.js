@@ -1,7 +1,3 @@
-
-
-
-
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -12,16 +8,15 @@ import postRoutes from "./routes/postRoutes.js";
 import tipsRoutes from "./routes/tipsRoutes.js";
 import placesRoutes from "./routes/placesRoutes.js";
 
-// Load environment variables
 dotenv.config();
-
 const app = express();
 
 /* -------------------- CORS CONFIG -------------------- */
 const allowedOrigins = [
   "http://localhost:5173",
   "https://solosphere-fs.vercel.app",
-  "https://solosphere-fs-ycns.vercel.app"
+  "https://solosphere-fs-ycns.vercel.app",
+  "https://solosphere-backend.onrender.com"
 ];
 
 app.use(
@@ -45,21 +40,16 @@ app.use("/api/posts", postRoutes);
 app.use("/api/tips", tipsRoutes);
 app.use("/api/places", placesRoutes);
 
-/* -------------------- DATABASE & SERVER -------------------- */
+/* -------------------- DATABASE -------------------- */
 await connectDB();
 console.log("📌 MongoDB Connected Successfully");
 
-/*
-  Local development uses app.listen(),
-  Vercel Serverless deployment DOES NOT use app.listen().
-*/
-if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 5001;
-  app.listen(PORT, () =>
-    console.log(`🚀 Local Backend running on http://localhost:${PORT}`)
-  );
-}
+/* -------------------- SERVER (Render needs this!) -------------------- */
+const PORT = process.env.PORT || 5001;
 
-// Export for Vercel serverless
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on PORT ${PORT}`);
+});
+
 export default app;
 

@@ -6,9 +6,18 @@
 // export default API_BASE;
 
 
-const API_BASE =
+// const API_BASE =
+//   import.meta.env.MODE === "development"
+//     ? "http://localhost:5001"
+//     : "https://solosphere-backend.onrender.com"; 
+//     export default API_BASE;
+
+
+
+    const API_BASE =
   import.meta.env.MODE === "development"
-    ? "http://localhost:5001/api"
-    : "https://solosphere-fs-ycns.vercel.app/api"; 
-    export default API_BASE;
+    ? "http://localhost:5001"
+    : "https://solosphere-backend.onrender.com";
+
+export default API_BASE;
 

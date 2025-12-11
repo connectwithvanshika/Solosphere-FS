@@ -14,15 +14,15 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://solosphere-fs-ycns.vercel.app", {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
-        credentials: "include", // ⭐ IMPORTANT
+        credentials: "include", // ⭐ IMPORTANT for cookies/token
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
+      
       const data = await res.json();
       console.log("Login Response:", data);
 
