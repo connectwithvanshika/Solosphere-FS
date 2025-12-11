@@ -751,6 +751,7 @@ const DEMO_TIPS = [
     image: "https://palmmedicalcenters.com/wp-content/uploads/2022/12/iStock-493216309-1024x683.jpg"
   },
 ];
+// added comment 
 
 async function seed() {
   try {
