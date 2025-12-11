@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
+import API_BASE from "../api";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -22,7 +23,7 @@ export default function Login() {
         },
         body: JSON.stringify(formData),
       });
-      
+
       const data = await res.json();
       console.log("Login Response:", data);
 
