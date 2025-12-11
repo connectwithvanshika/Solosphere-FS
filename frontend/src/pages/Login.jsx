@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5001/api/auth/login", {
+      const res = await fetch("https://solosphere-fs-ycns.vercel.app", {
         method: "POST",
         credentials: "include", // ⭐ IMPORTANT
         headers: {
