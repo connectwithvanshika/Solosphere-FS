@@ -108,7 +108,7 @@ export default function Footer({ onExplore, onMap }) {
           <ul>
             <li onClick={goHome}>Home</li>
             <li onClick={goExplore}>Explore</li>
-            <li onClick={goMap}>Map</li>
+            <li onClick={goMap}>Travel Tips</li>
           </ul>
         </div>
 

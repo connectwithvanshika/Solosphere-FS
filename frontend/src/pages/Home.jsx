@@ -90,7 +90,7 @@ export default function Home() {
             <li onClick={scrollToMap}>Map</li>
             <li onClick={scrollToGallery}>Gallery</li>
             <li onClick={scrollToMyPosts}>My Posts</li>
-            <li onClick={() => navigate("/profile")}>Profile</li>
+            {/* <li onClick={() => navigate("/profile")}>Profile</li> */}
           </ul>
 
           <button className="logout-btn" onClick={handleLogout}>
