@@ -221,7 +221,7 @@
 
 .tips-pagination button{
   padding:8px 12px;
-  background: rgba(255,255,255,0.08);
+  background:black;
   color: white;
   border:none;
   border-radius:10px;
@@ -229,7 +229,7 @@
 }
 
 .tips-pagination button:disabled{
-  opacity:0.45;
+  /* opacity:0.45; */
   cursor:not-allowed;
 }
 

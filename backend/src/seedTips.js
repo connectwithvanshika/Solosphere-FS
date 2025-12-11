@@ -320,7 +320,7 @@ const DEMO_TIPS = [
     content:
       "• Avoid sling bags.\n• Don’t show cash.\n• Keep zips closed.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1495344517868-8ebaf0a2044a?auto=format&w=1200"
+    image: "https://www.constructionweekonline.in/cloud/2021/11/25/SDvMlSy7-Delhi-Meerut-Expressway-5.jpg"
   },
   {
     id: 26,
@@ -331,7 +331,7 @@ const DEMO_TIPS = [
     content:
       "• Stay in women coaches.\n• Avoid last train.\n• Keep backpack in front.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1496237167324-504c0b3ac1b5?auto=format&w=1200"
+    image: "https://img.staticmb.com/mbcontent/images/crop/uploads/2024/7/Delhi-Metro_0_1200.jpg.webp"
   },
   {
     id: 27,
@@ -342,7 +342,7 @@ const DEMO_TIPS = [
     content:
       "• Use ShareTrip.\n• Verify driver name.\n• Avoid dark lanes.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&w=1200"
+    image: "https://media1.thrillophilia.com/filestore/nmkv2yriwascb0uszhk8uyskkzwx_Downpic.cc-image339280305.jpg"
   },
 
   /* -----------------------------------------------------
@@ -357,7 +357,7 @@ const DEMO_TIPS = [
     content:
       "• Ola/Uber.\n• Metro.\n• E-Rickshaw in crowds.\n• Avoid unauthorized autos.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1465447142348-e9952c393450?auto=format&w=1200"
+    image: "https://questionofcities.org/wp-content/uploads/2024/02/Delhi-metro-is-unaffordable-for-49-percent-of-its-households.jpg"
   },
   {
     id: 29,
@@ -368,7 +368,7 @@ const DEMO_TIPS = [
     content:
       "• Airport metro.\n• Meru cabs.\n• Avoid unofficial taxis.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&w=1200"
+    image: "https://cdn.zeebiz.com/sites/default/files/2023/08/22/257263-dubai-airport.jpg"
   },
   {
     id: 30,
@@ -379,7 +379,7 @@ const DEMO_TIPS = [
     content:
       "• Avoid rush hour.\n• Stay aware.\n• Keep phone secure.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&w=1200"
+    image: "https://img.etimg.com/thumb/msid-25824204,width-480,height-360,imgsize-82218,resizemode-75/each-rake-has-three-cars.jpg"
   },
 
   /* -----------------------------------------------------
@@ -394,7 +394,7 @@ const DEMO_TIPS = [
     content:
       "• Deep breathing.\n• Drink water.\n• Take small breaks.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1533075372224-6b88e88ca6e6?auto=format&w=1200"
+    image: "https://www.nextwavetherapy.com.au/wp-content/uploads/2020/09/relaxZoeblog.jpg"
   },
   {
     id: 32,
@@ -405,7 +405,7 @@ const DEMO_TIPS = [
     content:
       "• Avoid street cut fruits.\n• Drink bottled water.\n• Prefer cooked meals.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1525059337994-6f2d8b4b1f89?auto=format&w=1200"
+    image: "https://sofresh.com/wp-content/uploads/2021/10/healthy-food-and-a-healthy-mind-1024x683.jpg"
   },
   {
     id: 33,
@@ -416,7 +416,7 @@ const DEMO_TIPS = [
     content:
       "• Lodhi Garden.\n• Deer Park.\n• Garden of Five Senses.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1487700160041-babef9c3cb55?auto=format&w=1200"
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Halleyparknovember_b.jpg/1200px-Halleyparknovember_b.jpg"
   },
 
   /* -----------------------------------------------------
@@ -431,7 +431,7 @@ const DEMO_TIPS = [
     content:
       "Police 100\nWomen 1091\nAmbulance 108",
     verified: true,
-    image: "https://images.unsplash.com/photo-1557234192-5b8b2cd1f55b?auto=format&w=1200"
+    image: "https://i.pinimg.com/736x/a1/46/37/a146373b8ca11ad391d10804e573b468.jpg"
   },
   {
     id: 35,
@@ -442,7 +442,7 @@ const DEMO_TIPS = [
     content:
       "• 1364 tourism helpline\n• Metro security helpline",
     verified: false,
-    image: "https://images.unsplash.com/photo-1580281657527-47d6b0c5a36d?auto=format&w=1200"
+    image: "https://thumbs.dreamstime.com/b/tourist-backpacker-paris-travel-europe-france-113677314.jpg"
   },
   {
     id: 36,
@@ -453,7 +453,7 @@ const DEMO_TIPS = [
     content:
       "• AIIMS\n• Apollo\n• Max Hospital",
     verified: true,
-    image: "https://images.unsplash.com/photo-1560976812-2c36dc1b8f86?auto=format&w=1200"
+    image: "https://housing.com/news/wp-content/uploads/2023/08/Hospital.jpg"
   },
 
   /* -----------------------------------------------------
@@ -468,7 +468,7 @@ const DEMO_TIPS = [
     content:
       "• Very safe in tourist zones.\n• Nightlife areas crowded.\n• Avoid isolated beaches.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&w=1200"
+    image: "https://img.freepik.com/free-photo/mumbai-skyline-seen-from-marine-drive-south-mumbai_469504-11.jpg?semt=ais_hybrid&w=740&q=80"
   },
   {
     id: 38,
@@ -479,7 +479,7 @@ const DEMO_TIPS = [
     content:
       "• Use women’s coach.\n• Avoid rush hour.\n• Keep phone secure.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&w=1200"
+    image: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202510/vande-bharat-express--fast-train-on-slow-track-242112698-16x9_0.jpg?VersionId=rH.MAcbqEsbVK5WzT9wgweYlb_L3Bq7M?size=1280:720"
   },
   {
     id: 39,
@@ -490,7 +490,7 @@ const DEMO_TIPS = [
     content:
       "• Avoid high tides.\n• Don’t enter rough water.\n• Stay near guards.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=1200"
+    image: "https://img.freepik.com/free-photo/people-surfing-brazil_23-2151079372.jpg?semt=ais_hybrid&w=740&q=80"
   },
 
   /* -----------------------------------------------------
@@ -505,7 +505,7 @@ const DEMO_TIPS = [
     content:
       "• Local trains.\n• BEST buses.\n• Verified Uber drivers.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1534532071526-d40c7e36a574?auto=format&w=1200"
+    image: "https://cdn.britannica.com/72/239572-050-F878B4FD/Uber-driver-holds-smartphone-in-car.jpg"
   },
   {
     id: 41,
@@ -516,7 +516,7 @@ const DEMO_TIPS = [
     content:
       "• Insist on meter.\n• Avoid auto at night.\n• Use app-based rides.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1488646953014-85e8f98ac3b2?auto=format&w=1200"
+    image: "https://assets.cntraveller.in/photos/67060b030871a221e9f6bd88/3:2/w_5004,h_3336,c_limit/GettyImages-520120864.jpg"
   },
   {
     id: 42,
@@ -527,7 +527,7 @@ const DEMO_TIPS = [
     content:
       "• Meru cabs.\n• Share-ride.\n• Stay in lit areas.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&w=1200"
+    image: "https://i0.wp.com/www.tusktravel.com/blog/wp-content/uploads/2020/04/Mumbai-Marine-Drive.jpg?fit=1024%2C685&ssl=1"
   },
 
   /* -----------------------------------------------------
@@ -542,7 +542,7 @@ const DEMO_TIPS = [
     content:
       "• Visit Marine Drive.\n• Practice breathing.\n• Stay hydrated.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&w=1200"
+    image: "https://cdn.britannica.com/26/84526-050-45452C37/Gateway-monument-India-entrance-Mumbai-Harbour-coast.jpg"
   },
   {
     id: 44,
@@ -553,7 +553,7 @@ const DEMO_TIPS = [
     content:
       "• Avoid oily food.\n• Prefer coconut water.\n• Carry fruits.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1525059337994-6f2d8b4b1f89?auto=format&w=1200"
+    image: "https://c.ndtvimg.com/k03tb2a_healthy-food_625x300_17_August_18.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886"
   },
   {
     id: 45,
@@ -564,7 +564,7 @@ const DEMO_TIPS = [
     content:
       "• Bandstand mornings.\n• Powai Lake.\n• City parks.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1496386263053-95bfa4d103c7?auto=format&w=1200"
+    image: "https://fruitbasket.limepack.com/blog/wp-content/uploads/2024/03/modern-cafe-house.jpg"
   },
 
   /* -----------------------------------------------------
@@ -578,7 +578,7 @@ const DEMO_TIPS = [
     excerpt: "Important helplines in Mumbai.",
     content: "100, 1091, 108",
     verified: true,
-    image: "https://images.unsplash.com/photo-1557234192-5b8b2cd1f55b?auto=format&w=1200"
+    image: "https://cdn.vectorstock.com/i/500p/35/76/emergency-call-hotline-icon-vector-43243576.jpg"
   },
   {
     id: 47,
@@ -587,9 +587,9 @@ const DEMO_TIPS = [
     title: "Tourist Helpdesk",
     excerpt: "Useful contacts for assistance.",
     content:
-      "• Mumbai tourism helpline\n• Women’s safety desk",
+      "• Mumbai tourism helpline\n• Women's safety desk",
     verified: true,
-    image: "https://images.unsplash.com/photo-1580281657527-47d6b0c5a36d?auto=format&w=1200"
+    image: "https://www.torontosom.ca/wp-content/uploads/2022/04/the-difference-between-international-and-domestic-tourism.jpg"
   },
   {
     id: 48,
@@ -600,7 +600,7 @@ const DEMO_TIPS = [
     content:
       "• Hinduja\n• Breach Candy\n• Fortis",
     verified: false,
-    image: "https://images.unsplash.com/photo-1560976812-2c36dc1b8f86?auto=format&w=1200"
+    image: "https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/09/Female_Doctor_Daughter_Mother_1296x728-header-1296x729.jpg?w=1155&h=2268"
   },
 
   /* -----------------------------------------------------
@@ -615,7 +615,7 @@ const DEMO_TIPS = [
     content:
       "• Inform your host.\n• Avoid snow paths alone.\n• Carry headlamp.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1533105074-7d2f8d1e36b8?auto=format&w=1200"
+    image: "https://himalayanoutback.com/wp-content/uploads/2022/05/Top-10-Mountain-Trekking-in-India.png"
   },
   {
     id: 50,
@@ -626,7 +626,7 @@ const DEMO_TIPS = [
     content:
       "• Avoid shared jeeps at night.\n• Prefer official cabs.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1465447142348-e9952c393450?auto=format&w=1200"
+    image: "https://chariot-electricbus.com/wp-content/uploads/2021/01/Electricbuses-in-Europe_2019.jpg"
   },
   {
     id: 51,
@@ -637,7 +637,7 @@ const DEMO_TIPS = [
     content:
       "• Wear boots.\n• Carry warmers.\n• Avoid slippery slopes.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1519821172141-b5d8e6e1d8aa?auto=format&w=1200"
+    image: "https://s3.india.com/wp-content/uploads/2024/12/Manali-And-Shimla-Buried-In-Snow-4-Lives-Lost-And-Roads-Closed.jpg"
   },
 
   /* -----------------------------------------------------
@@ -652,7 +652,7 @@ const DEMO_TIPS = [
     content:
       "• HRTC buses.\n• Verified cab drivers.\n• Avoid hitchhiking.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&w=1200"
+    image: "https://manalitourism.co.in/images/places-to-visit/headers/old-manali-snow-point-header-manali-tourism.jpg.jpg"
   },
   {
     id: 53,
@@ -663,7 +663,7 @@ const DEMO_TIPS = [
     content:
       "• Pre-book jeeps.\n• Avoid late-night travel.\n• Carry backup power.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1488646953014-85e8f98ac3b2?auto=format&w=1200"
+    image: "https://3.imimg.com/data3/RN/KH/MY-11389437/treking-tours-500x500.jpg"
   },
   {
     id: 54,
@@ -674,7 +674,7 @@ const DEMO_TIPS = [
     content:
       "• Use snow chains.\n• Avoid bikes.\n• Use official taxis.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&w=1200"
+    image: "https://www.kullumanalitrips.com/images/manali-tour-package-by-volvo-bus-004.jpg"
   },
 
   /* -----------------------------------------------------
@@ -689,7 +689,7 @@ const DEMO_TIPS = [
     content:
       "• Hydrate more.\n• Avoid alcohol.\n• Take breaks.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1526256444513-0c9a9c687d5b?auto=format&w=1200"
+    image: "https://media.istockphoto.com/id/1496660180/photo/the-sissu-valley.jpg?s=612x612&w=0&k=20&c=eYg4cuYIQTZUuNa6x19ZBQI-xm-tV-t8h6MecSlYQRE="
   },
   {
     id: 56,
@@ -700,7 +700,7 @@ const DEMO_TIPS = [
     content:
       "• River walks.\n• Yoga.\n• Hot springs.\n• Journaling.",
     verified: false,
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&w=1200"
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/b2/79/37/solang-valley-manali.jpg?w=900&h=500&s=1"
   },
   {
     id: 57,
@@ -711,7 +711,7 @@ const DEMO_TIPS = [
     content:
       "• Soups.\n• Herbal tea.\n• Hot meals.\n• Avoid cold drinks.",
     verified: true,
-    image: "https://images.unsplash.com/photo-1525059337994-6f2d8b4b1f89?auto=format&w=1200"
+    image: "https://www.somansleisuretours.com/_next/image?url=https%3A%2F%2Fdashboard.somansleisuretours.com%2Fuploads%2Fwmremove_transformed_2_155577614f.webp&w=2048&q=100"
   },
 
   /* -----------------------------------------------------
@@ -726,7 +726,7 @@ const DEMO_TIPS = [
     content:
       "100, 1091, 108",
     verified: true,
-    image: "https://images.unsplash.com/photo-1557234192-5b8b2cd1f55b?auto=format&w=1200"
+    image: "https://madtrek.com/wp-content/uploads/2024/08/Benefits-of-treking-img.webp"
   },
   {
     id: 59,
@@ -737,7 +737,7 @@ const DEMO_TIPS = [
     content:
       "• Himachal rescue line\n• Local police helpline\n• Trekking support teams",
     verified: false,
-    image: "https://images.unsplash.com/photo-1580281657527-47d6b0c5a36d?auto=format&w=1200"
+    image: "https://d26dp53kz39178.cloudfront.net/media/uploads/products/1_2_6WREnEw.jpg"
   },
   {
     id: 60,
@@ -748,7 +748,7 @@ const DEMO_TIPS = [
     content:
       "• Mission Hospital\n• Lady Willingdon Hospital\n• Civil Hospital Manali",
     verified: true,
-    image: "https://images.unsplash.com/photo-1560976812-2c36dc1b8f86?auto=format&w=1200"
+    image: "https://palmmedicalcenters.com/wp-content/uploads/2022/12/iStock-493216309-1024x683.jpg"
   },
 ];
 

@@ -1,11 +1,9 @@
-
 import "../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 
 import Explore from "./Explore";
-// import Map from "./Map";
 import Gallery from "./Gallery";
 import MyPosts from "./MyPosts";
 import Footer from "./Footer";
@@ -24,9 +22,11 @@ export default function Home() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("");
-  const [category, setCategory] = useState(""); // NEW: for category filtering
+  const [category, setCategory] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
+
   const [results, setResults] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false); // ⭐ NEW STATE
 
   // Scroll refs
   const exploreRef = useRef(null);
@@ -39,24 +39,20 @@ export default function Home() {
     navigate("/");
   };
 
-  // ⭐ FIXED SEARCH FUNCTION
+  // ⭐ UPDATED SEARCH FUNCTION
   const handleSearch = async () => {
     try {
-      const params = {};
+      setHasSearched(true); // ⭐ Now we know the user searched
 
-      // Only add params if they have values
+      const params = {};
       if (city) params.city = city;
       if (guests) params.guests = guests;
-      if (checkIn) params.checkin = checkIn; // Note: lowercase to match backend
-      if (checkOut) params.checkout = checkOut; // Note: lowercase to match backend
+      if (checkIn) params.checkin = checkIn;
+      if (checkOut) params.checkout = checkOut;
       if (category) params.category = category;
       if (selectedTag) params.tags = selectedTag;
 
-      console.log("Sending params:", params); // Debug log
-
       const res = await axios.get(`${API_BASE}/posts`, { params });
-
-      console.log("Search Results:", res.data.results);
       setResults(res.data.results);
     } catch (err) {
       console.error("❌ Error:", err);
@@ -102,38 +98,26 @@ export default function Home() {
           </button>
         </nav>
 
-        {/* HERO TITLE + SUBTEXT */}
+        {/* HERO TITLE */}
         <div className="hero-section">
           <div className="hero-subtag">Travel Smart, Travel Safe</div>
           <h1 className="hero-title">Explore the World, One Journey at a Time.</h1>
           <p className="hero-desc">Discover verified places and connect meaningfully.</p>
         </div>
 
-        {/* 🔍 SEARCH UI - FIXED */}
+        {/* 🔍 SEARCH UI */}
         <div className="search-box">
           <div className="search-header">
-            <button 
-              className={category === "" ? "active" : ""}
-              onClick={() => setCategory("")}
-            >
+            <button className={category === "" ? "active" : ""} onClick={() => setCategory("")}>
               All Residences
             </button>
-            <button 
-              className={category === "Hostel" ? "active" : ""}
-              onClick={() => setCategory("Hostel")}
-            >
+            <button className={category === "Hostel" ? "active" : ""} onClick={() => setCategory("Hostel")}>
               Hostel
             </button>
-            <button 
-              className={category === "Apartment" ? "active" : ""}
-              onClick={() => setCategory("Apartment")}
-            >
+            <button className={category === "Apartment" ? "active" : ""} onClick={() => setCategory("Apartment")}>
               Apartment
             </button>
-            <button 
-              className={category === "Camp" ? "active" : ""}
-              onClick={() => setCategory("Camp")}
-            >
+            <button className={category === "Camp" ? "active" : ""} onClick={() => setCategory("Camp")}>
               Camp
             </button>
           </div>
@@ -141,11 +125,7 @@ export default function Home() {
           <div className="search-fields">
             <div className="field">
               <label>Location</label>
-              <input
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="City name (e.g., Goa)"
-              />
+              <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="City name (e.g., Goa)" />
             </div>
 
             <div className="field">
@@ -160,16 +140,10 @@ export default function Home() {
 
             <div className="field">
               <label>Travelers</label>
-              <input
-                type="number"
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                placeholder="Guests"
-              />
+              <input type="number" value={guests} onChange={(e) => setGuests(e.target.value)} placeholder="Guests" />
             </div>
           </div>
 
-          {/* TAG FILTERS */}
           <div className="search-footer">
             <div className="filter-tags">
               {["private", "community", "shared", "female-only"].map((tag) => (
@@ -207,15 +181,24 @@ export default function Home() {
               ))}
             </div>
           </>
-        ) : (
-          <p style={{ textAlign: "center", padding: "10px", opacity: 0.8 ,fontWeight: "600" , margin : "0"  , fontSize : '30px' }}>
-            No results yet — try searching!
+        ) : hasSearched ? (
+          <p
+            style={{
+              textAlign: "center",
+              padding: "1px",
+              opacity: 0.8,
+              fontWeight: "600",
+              margin: "0",
+              fontSize: "20px",
+            }}
+          >
+            No results Found 
           </p>
-        )}
+        ) : null}
       </div>
 
-      {/* OTHER SECTIONS */}
-      <div ref={exploreRef} className="explore-wrapper" style={{ background: "#fff", padding: "50px 0" }}>
+      {/* SECTIONS */}
+      <div ref={exploreRef} className="explore-wrapper" style={{ padding: "0" }}>
         <Explore />
       </div>
 

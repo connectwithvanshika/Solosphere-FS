@@ -21,6 +21,7 @@ body {
 .explore-section-wrapper {
   width: 100%;
   padding: 100px 0;
+  /* min-height: 120vh; */
   background-image:
     linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3)),
     url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dHJhdmVsfGVufDB8fDB8fHww");
@@ -35,14 +36,6 @@ body {
   min-height: 100vh;
 }
 
-/* .hero-wrapper{
-    height: 100vh;
-} */
-
-/* .hero-wrapper {
-  position: relative;
-  z-index: 1;
-} */
 
 
 .hero-wrapper {
@@ -98,7 +91,7 @@ body {
 
 
 .search-results {
-  padding: 10px;
+  /* padding: 10px; */
   background: white;
   width: 100%;
   transition: background 0.3s ease;
@@ -130,18 +123,32 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.4),
               inset 0 0 10px rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.07);
+  margin: 20px;
+  padding: 10px;
+  width: 600px;
+  height: 400px;
 
 }
 
-.result-card:hover {
+/* .result-card:hover {
   transform: scale(1.03);
-}
+} */
 
-.result-card img {
+/* .result-card img {
   width: 100%;
   height: 160px;
   object-fit: cover;
   border-radius: 10px;
+} */
+
+
+.result-card img {
+  padding: 10px;
+  width: 100%;
+  height: 180px;      
+  object-fit: cover; 
+  /* margin: 20px; */
+    
 }
 .result-card h3{
   /* color: black; */

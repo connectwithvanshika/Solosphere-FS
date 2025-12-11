@@ -211,7 +211,7 @@ export default function TravelTips() {
           Next ▶
         </button>
 
-        <div style={{ marginLeft: 12, alignSelf: "center", color: "#666" }}>
+        <div style={{ marginLeft: 12, alignSelf: "center", color: "white" , backgroundColor: "black" , padding: '8px' , borderRadius: '10px' }}>
           {total} result{total !== 1 ? "s" : ""} • Page {page} / {totalPages}
         </div>
       </div>
