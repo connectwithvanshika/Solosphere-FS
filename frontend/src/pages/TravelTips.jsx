@@ -5,8 +5,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "../styles/travel-tips.css";
+import API_BASE from "../api"; 
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 
 export default function TravelTips() {
   const [query, setQuery] = useState("");

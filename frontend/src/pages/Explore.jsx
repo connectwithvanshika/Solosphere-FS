@@ -4,8 +4,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/explore.css";
+import API_BASE from "../api";  
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 
 export default function Explore() {
   const [search, setSearch] = useState("");

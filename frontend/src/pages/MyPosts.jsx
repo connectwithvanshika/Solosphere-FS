@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/myposts.css";
 
-const API_BASE_URL = "http://localhost:5001"; // 🔁 change this to your backend base URL
+const API_BASE_URL = "https://solosphere-backend.onrender.com"; // 🔁 change this to your backend base URL
 
 export default function MyPosts() {
   const [posts, setPosts] = useState([]);
