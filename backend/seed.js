@@ -17,6 +17,8 @@ const places = [
     guests: 50,
     availableFrom: new Date("2024-01-01"),
     availableTo: new Date("2026-12-31"),
+    nightSafetyScore: 85,
+    nightSafetyTags: { lighting: true, crowd: true, security: true },
     lat: 15.2993, lng: 74.1240
   },
   {
@@ -39,10 +41,12 @@ const places = [
     imageUrl: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5",
     category: "Hostel",
     city: "Mumbai",
-    tags: ["female-only", "shared", "private"],
-    guests: 30,
+    tags: ["female-only", "shared", "community"],
+    guests: 20,
     availableFrom: new Date("2024-01-01"),
     availableTo: new Date("2026-12-31"),
+    nightSafetyScore: 95,
+    nightSafetyTags: { lighting: true, crowd: true, security: true },
     lat: 19.0760, lng: 72.8777
   },
   {
@@ -200,10 +204,12 @@ const places = [
     category: "Camp",
     city: "Munnar",
     tags: ["private", "shared"],
-    guests: 10,
+    guests: 15,
     availableFrom: new Date("2024-01-01"),
     availableTo: new Date("2026-12-31"),
-    lat: 10.0889, lng: 77.0595
+    nightSafetyScore: 40, // Low safety for remote camping
+    nightSafetyTags: { lighting: false, crowd: false, security: false },
+    lat: 34.0267, lng: 78.4550595
   },
 
   // --- PRIVATE STAYS ---
@@ -252,13 +258,15 @@ const places = [
     title: "SafeGlamp Women's Camp",
     description: "Exclusive women-only glamping experience with 24/7 security.",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1496545672479-7ac37b969160",
+    imageUrl: "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7",
     category: "Camp",
     city: "Rishikesh",
     tags: ["female-only", "private", "shared"],
     guests: 12,
     availableFrom: new Date("2024-01-01"),
     availableTo: new Date("2026-12-31"),
+    nightSafetyScore: 92,
+    nightSafetyTags: { lighting: true, crowd: true, security: true },
     lat: 30.0869, lng: 78.2676
   },
   {
@@ -282,10 +290,12 @@ const places = [
     category: "Apartment",
     city: "Shimla",
     tags: ["private", "community"],
-    guests: 2,
+    guests: 4,
     availableFrom: new Date("2024-01-01"),
     availableTo: new Date("2026-12-31"),
-    lat: 31.1048, lng: 77.1734
+    nightSafetyScore: 80,
+    nightSafetyTags: { lighting: true, crowd: false, security: true },
+    lat: 30.1441, lng: 78.29661734
   },
   {
     title: "Zen Garden Cottage",

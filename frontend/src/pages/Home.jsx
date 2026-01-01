@@ -1,6 +1,6 @@
 import "../styles/home.css";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
 import Explore from "./Explore";
@@ -27,6 +27,8 @@ export default function Home() {
   const [selectedTag, setSelectedTag] = useState(null);
 
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [safeAfterNine, setSafeAfterNine] = useState(false);
   const [hasSearched, setHasSearched] = useState(false); // ⭐ NEW STATE
 
   // Scroll refs
@@ -43,24 +45,40 @@ export default function Home() {
   // ⭐ UPDATED SEARCH FUNCTION
   const handleSearch = async () => {
     try {
-      setHasSearched(true); // ⭐ Now we know the user searched
+      setLoading(true); // Set loading to true
+      setHasSearched(true);
 
-      const params = {};
-      if (city) params.city = city;
-      if (guests) params.guests = guests;
-      if (checkIn) params.checkin = checkIn;
-      if (checkOut) params.checkout = checkOut;
-      if (category) params.category = category;
-      if (selectedTag) params.tags = selectedTag;
+      const params = new URLSearchParams({
+        city,
+        category: category, // Use category instead of activeCategory
+        guests,
+        checkin: checkIn,
+        checkout: checkOut,
+        safeAfterNine
+      });
 
-      const res = await axios.get(`${API_BASE}/api/posts`, { params });
+      // Add selectedTag if it exists
+      if (selectedTag) {
+        params.append("tags", selectedTag);
+      }
 
-      setResults(res.data.results);
+      const res = await axios.get(`${API_BASE}/api/posts?${params.toString()}`);
+      setResults(res.data.results); // Use .results array from the object
+      setLoading(false);
+
+      const exploreSection = document.getElementById("explore-spots"); // Assuming an element with this ID exists
+      if (exploreSection) exploreSection.scrollIntoView({ behavior: "smooth" });
     } catch (err) {
       console.error("❌ Error:", err);
       alert("Something went wrong. Check console.");
+      setLoading(false); // Set loading to false on error
     }
   };
+
+  // Refetch on category or safety toggle change
+  useEffect(() => {
+    handleSearch();
+  }, [category, safeAfterNine]);
 
   // Scroll helpers
   const scrollToExplore = () => exploreRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -92,6 +110,7 @@ export default function Home() {
             <li onClick={scrollToMap}>Map</li>
             <li onClick={scrollToGallery}>Gallery</li>
             <li onClick={scrollToMyPosts}>My Posts</li>
+            <li onClick={() => navigate("/companion")} style={{ color: 'white', fontWeight: 'bold' }}>Find a Buddy</li>
             {/* <li onClick={() => navigate("/profile")}>Profile</li> */}
           </ul>
 
@@ -159,6 +178,13 @@ export default function Home() {
               ))}
             </div>
 
+            <div className="night-safety-toggle-container" onClick={() => setSafeAfterNine(!safeAfterNine)}>
+              <div className={`custom-toggle ${safeAfterNine ? 'active' : ''}`}>
+                <div className="toggle-circle"></div>
+              </div>
+              <label>Safe After 9 PM</label>
+            </div>
+
             <button className="search-btn" onClick={handleSearch}>
               🔍 Search
             </button>
@@ -173,8 +199,14 @@ export default function Home() {
             <h2>{results.length} Results Found</h2>
             <div className="results-grid">
               {results.map((place) => (
-                <div className="result-card" key={place._id}>
-                  <img src={place.imageUrl} alt="Place" />
+                <div className="place-card" key={place._id}>
+                  <div className="place-image">
+                    <img src={place.imageUrl || "https://via.placeholder.com/400x300"} alt={place.title} />
+                    <div className="place-rating">⭐ {place.rating}</div>
+                    {place.nightSafetyScore >= 65 && (
+                      <div className="night-safety-badge">🌙 Safe After 9 PM</div>
+                    )}
+                  </div>
                   <h3>{place.title}</h3>
                   <p>{place.city}</p>
                   <p>Category: {place.category}</p>

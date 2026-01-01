@@ -92,27 +92,24 @@ body {
 
 
 .search-results {
-  /* padding: 10px; */
   background: white;
   width: 100%;
-  transition: background 0.3s ease;
+  padding: 60px 20px;
 }
-
-.search-results p {
-  color: black;
-}
-
 
 .search-results h2 {
-  color: black;
+  color: #111;
   text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
 }
-
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* .result-card {
@@ -133,55 +130,62 @@ body {
 } */
 
 
-.result-card {
+.place-card {
   background: #2b2b2b;
   border-radius: 15px;
   overflow: hidden;
-  width: 280px;
-  /* perfect card width */
-  height: 390px;
+  width: 100%;
+  /* fit to grid column */
+  height: 400px;
   /* fixed clean height */
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin: 10px;
-  padding: 10px;
+  position: relative;
+}
+
+.place-image {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.place-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.place-card h3 {
+  color: white;
+  padding: 15px 15px 5px;
+  font-size: 18px;
+}
+
+.place-card p {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2px 15px;
+  font-size: 14px;
+}
+
+.place-rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #ffb400;
+  backdrop-filter: blur(4px);
 }
 
 /* .result-card:hover {
   transform: scale(1.03);
 } */
-
-/* .result-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-} */
-
-
-.result-card img {
-  padding: 10px;
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  /* margin: 20px; */
-  /* gap: 3px; */
-
-}
-
-.result-card h3 {
-  /* color: black; */
-  color: white;
-  text-align: center;
-}
-
-.result-card p {
-  text-align: left;
-  font-weight: 500;
-  color: white;
-}
 
 
 
@@ -189,6 +193,86 @@ body {
 
 /* ................................... *...................................* ................................... *...................................
 /* Navbar */
+
+/* Night Safety Toggle */
+.custom-toggle {
+  width: 36px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.custom-toggle.active {
+  background: #111;
+}
+
+.toggle-circle {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: 0.3s;
+}
+
+.custom-toggle.active .toggle-circle {
+  left: 19px;
+}
+
+.night-safety-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.night-safety-toggle-container:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.night-safety-toggle-container label {
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #444;
+}
+
+/* Safety Badge */
+.night-safety-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-box-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  border-radius: 100px;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 40px;
+}
 
 .navbar {
   display: flex;

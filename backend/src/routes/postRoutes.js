@@ -52,12 +52,18 @@ router.get("/", async (req, res) => {
       checkout = "",
       sort = "recent",
       page = 1,
-      limit = 20
+      limit = 20,
+      safeAfterNine
     } = req.query;
 
     console.log("📥 Received query params:", req.query);
 
     const filter = {};
+
+    // Night Safety Filter
+    if (safeAfterNine === "true") {
+      filter.nightSafetyScore = { $gte: 65 };
+    }
 
     // City filter (case-insensitive)
     if (city && city.trim()) {

@@ -1,0 +1,178 @@
+/* SOS Global Button */
+.sos-button-fixed {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 70px;
+    height: 70px;
+    background: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(255, 77, 77, 0.5);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 4px solid white;
+    font-weight: bold;
+}
+
+.sos-button-fixed:hover {
+    transform: scale(1.1);
+    background: #e60000;
+}
+
+.sos-btn-text {
+    font-size: 14px;
+    margin-top: -2px;
+}
+
+/* Emergency Mode Overlay */
+.emergency-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #111;
+    color: white;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.emergency-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.emergency-header h1 {
+    color: #ff4d4d;
+    font-size: 32px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.location-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.loc-item label {
+    font-size: 12px;
+    color: #888;
+    display: block;
+}
+
+.loc-item span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Helpline Grid */
+.helpline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.helpline-card {
+    background: #ff4d4d;
+    padding: 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.helpline-card:hover {
+    transform: translateY(-5px);
+    background: #e60000;
+}
+
+.helpline-card h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+.helpline-card .number {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* Actions */
+.emergency-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.action-btn {
+    padding: 18px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.share-btn {
+    background: white;
+    color: #111;
+}
+
+.exit-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.exit-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Pulsing effect for SOS */
+@keyframes pulse-sos {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 77, 77, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+    }
+}
+
+.sos-button-fixed {
+    animation: pulse-sos 2s infinite;
+}

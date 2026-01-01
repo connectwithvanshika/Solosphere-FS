@@ -4,6 +4,8 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery"; // <-- FIXED IMPORT
 import MyPosts from "./pages/MyPosts";
+import SOSButton from "./pages/SOSButton";
+import TravelCompanion from "./pages/TravelCompanion";
 
 
 import "leaflet/dist/leaflet.css";
@@ -17,12 +19,11 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/gallery" element={<Gallery />} /> 
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/my-posts" element={<MyPosts />} />
+        <Route path="/companion" element={<TravelCompanion />} />
       </Routes>
+      <SOSButton />
     </Router>
   );
 }
-
-
-

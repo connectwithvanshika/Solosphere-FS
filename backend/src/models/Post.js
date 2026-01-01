@@ -50,6 +50,14 @@ const postSchema = new mongoose.Schema(
     availableFrom: { type: Date, default: null },
     availableTo: { type: Date, default: null },
 
+    // ⭐ NIGHT SAFETY FIELDS
+    nightSafetyScore: { type: Number, default: 0 },
+    nightSafetyTags: {
+      lighting: { type: Boolean, default: false },
+      crowd: { type: Boolean, default: false },
+      security: { type: Boolean, default: false }
+    },
+
     // (optional) for Maps
     lat: Number,
     lng: Number,

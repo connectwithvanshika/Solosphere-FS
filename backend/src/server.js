@@ -7,6 +7,8 @@ import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import tipsRoutes from "./routes/tipsRoutes.js";
 import placesRoutes from "./routes/placesRoutes.js";
+import emergencyRoutes from "./routes/emergencyRoutes.js";
+import companionRoutes from "./routes/companionRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -39,6 +41,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/tips", tipsRoutes);
 app.use("/api/places", placesRoutes);
+app.use("/api/emergency", emergencyRoutes);
+app.use("/api/companion", companionRoutes);
 
 /* -------------------- DATABASE -------------------- */
 await connectDB();
