@@ -1,68 +1,35 @@
-// import "../styles/footer.css";
 
-// export default function Footer({ onHome, onExplore, onMap }) {
-//   return (
-//     <footer className="footer">
-//       <div className="footer-container">
-
-//         {/* Column 1 */}
-//         <div className="footer-section">
-//           <h3 className="brand">SoloSphere</h3>
-//           <p className="tagline">
-//             A platform made for fearless solo travelers — helping you explore safely,
-//             connect meaningfully, and travel with confidence.
-//           </p>
-//         </div>
-
-//         {/* Column 2 */}
-//         <div className="footer-section">
-//           <h4>Quick Links</h4>
-//           <ul>
-//             <li onClick={onHome}>Home</li>
-//             <li onClick={onExplore}>Explore</li>
-//             <li onClick={onMap}>Map</li>
-//           </ul>
-//         </div>
-
-//         {/* Column 3 */}
-//         <div className="footer-section">
-//           <h4>Contact</h4>
-//           <p>Email: support@solosphere.com</p>
-//           <p>Phone: +91 98765XXXXX</p>
-//         </div>
-
-//         {/* Column 4 */}
-//         <div className="footer-section">
-//           <h4>Useful</h4>
-//           <ul>
-//             <li>Blog</li>
-//             <li>Events</li>
-//             <li>Newsletter</li>
-//           </ul>
-//         </div>
-//       </div>
-
-//       {/* Social Icons */}
-//       <div className="footer-social">
-//         <span>🌎</span>
-//         <span>📸</span>
-//         <span>✈️</span>
-//       </div>
-
-//       {/* Copyright */}
-//       <p className="footer-bottom">
-//         © {new Date().getFullYear()} SoloSphere — Made with 🤍
-//       </p>
-//     </footer>
-//   );
-// }
-
+import { useState } from "react";
 import "../styles/footer.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Footer({ onExplore, onMap }) {
+// ... imports
+
+export default function Footer({ onExplore, onMap, onGallery, onMyPosts }) {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Newsletter State
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | loading | success
+
+  const handleSubscribe = () => {
+    if (!email.includes("@")) {
+      alert("Please enter a valid email!");
+      return;
+    }
+
+    setStatus("loading");
+
+    // Simulate API call
+    setTimeout(() => {
+      setStatus("success");
+      setEmail("");
+
+      // Auto-hide after 4 seconds
+      setTimeout(() => setStatus("idle"), 4000);
+    }, 1500);
+  };
 
   const goHome = () => {
     if (location.pathname !== "/home") {
@@ -91,13 +58,46 @@ export default function Footer({ onExplore, onMap }) {
     }
   };
 
+  const goGallery = () => {
+    if (location.pathname !== "/home") {
+      navigate("/home");
+      setTimeout(() => onGallery?.(), 500);
+    } else {
+      onGallery?.();
+    }
+  };
+
+  const goMyPosts = () => {
+    if (location.pathname !== "/home") {
+      navigate("/home");
+      setTimeout(() => onMyPosts?.(), 500);
+    } else {
+      onMyPosts?.();
+    }
+  };
+
   return (
     <footer className="footer">
+      {/* 🔹 SUCCESS ALERT OVERLAY */}
+      {status === "success" && (
+        <div className="newsletter-success-card">
+          <div className="success-icon">✅</div>
+          <h4>Subscription Successful!</h4>
+          <p>
+            Your response has been sent to <strong>vanshika.connects@gmail.com</strong>.
+          </p>
+          <p className="success-sub">Thank you for joining SoloSphere!</p>
+          <button onClick={() => setStatus("idle")} className="close-success-btn">
+            Close
+          </button>
+        </div>
+      )}
+
       <div className="footer-container">
         <div className="footer-section">
           <h3 className="brand">SoloSphere</h3>
           <p className="tagline">
-            A platform made for fearless solo travelers — helping you 
+            A platform made for fearless solo travelers — helping you
           </p>
           <p>explore
             safely, connect meaningfully, and travel with confidence.</p>
@@ -108,7 +108,9 @@ export default function Footer({ onExplore, onMap }) {
           <ul>
             <li onClick={goHome}>Home</li>
             <li onClick={goExplore}>Explore</li>
-            <li onClick={goMap}>Travel Tips</li>
+            <li onClick={goMap}>Map</li>
+            <li onClick={goGallery}>Gallery</li>
+            <li onClick={goMyPosts}>My Posts</li>
           </ul>
         </div>
 
@@ -118,48 +120,24 @@ export default function Footer({ onExplore, onMap }) {
           <p>Phone: +91 98765XXXXX</p>
         </div>
 
-        <div className="footer-section">
-          <h4>Useful</h4>
-          <ul>
-            <li>
-              <a
-                href="https://thesolotravelinstyleblog.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Blog
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="https://in.bookmyshow.com/events/solo-travellers/ET00461911"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                  cursor: "pointer",
-                }}
-              >
-                Events
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.solotravel.cc/en/newsletter/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                  cursor: "pointer",
-                }}
-              >
-                Newsletter
-              </a>
-            </li>
-          </ul>
+        <div className="footer-section newsletter-section">
+          <h4>Stay Connected</h4>
+          <p>Join our community of fearless travelers.</p>
+          <div className="newsletter-form">
+            <input
+              type="email"
+              placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === "loading"}
+            />
+            <button
+              onClick={handleSubscribe}
+              disabled={status === "loading"}
+            >
+              {status === "loading" ? "..." : "Subscribe"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -169,9 +147,13 @@ export default function Footer({ onExplore, onMap }) {
         <span>✈️</span>
       </div>
 
-      <p className="footer-bottom">
-        © {new Date().getFullYear()} SoloSphere — All rights reserved
-      </p>
+      <div className="footer-bottom-row">
+        <p>© {new Date().getFullYear()} SoloSphere — All rights reserved</p>
+        <div className="footer-legal">
+          <span>Privacy Policy</span>
+          <span>Terms of Service</span>
+        </div>
+      </div>
     </footer>
   );
 }

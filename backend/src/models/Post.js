@@ -38,13 +38,17 @@ const postSchema = new mongoose.Schema(
     // ⭐ FILTERING FIELDS
     category: {
       type: String,
-      enum: ["Hostel", "Apartment", "Camp", "Private Stay", "Shared"],
+      enum: ["Hostel", "Apartment", "Camp", "Private Stay", "Shared", "Café"],
       required: false,
     },
 
     city: { type: String, trim: true },
 
     tags: { type: [String], default: [] },
+
+    guests: { type: Number, default: 1 },
+    availableFrom: { type: Date, default: null },
+    availableTo: { type: Date, default: null },
 
     // (optional) for Maps
     lat: Number,

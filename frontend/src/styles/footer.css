@@ -1,6 +1,6 @@
 .footer {
   background: white;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 50px 60px;
   font-family: "Inter", sans-serif;
   color: #222;
@@ -61,14 +61,162 @@
   font-size: 14px;
 }
 
+/* Newsletter */
+.newsletter-section {
+  max-width: 300px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  flex: 1;
+  outline: none;
+}
+
+.newsletter-form button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: black;
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.newsletter-form button:hover {
+  background: #333;
+}
+
+/* Footer Bottom Row */
+.footer-bottom-row {
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #777;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-legal span {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-legal span:hover {
+  color: #222;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+  }
+
+  .newsletter-section {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
 }
-.footer-section ul li a:hover {
-  opacity: 0.7;
-  transition: 0.3s ease-in-out;
+
+/* Newsletter Success Card */
+.newsletter-success-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid #4ade80;
+  /* Success Green Border */
+  text-align: center;
+  z-index: 2000;
+  width: 90%;
+  max-width: 420px;
+  animation: popIn 0.3s ease-out;
+}
+
+.success-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.newsletter-success-card h4 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.newsletter-success-card p {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.newsletter-success-card strong {
+  color: #000;
+}
+
+.success-sub {
+  font-size: 13px !important;
+  color: #888 !important;
+  margin-bottom: 20px !important;
+}
+
+.close-success-btn {
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: #111;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.close-success-btn:hover {
+  background: #000;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }

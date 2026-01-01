@@ -56,6 +56,13 @@ export default function Signup() {
           <button type="submit" className="auth-btn">Sign Up</button>
         </form>
       </div>
+
+      {/* 🔹 Info Card for Testing */}no
+      <div className="info-card">
+        <p className="info-title">Use these credentials to test:</p>
+        <p><strong>Email:</strong> solosphere@gmail.com</p>
+        <p><strong>Password:</strong> solosphere</p>
+      </div>
     </div>
   );
 }

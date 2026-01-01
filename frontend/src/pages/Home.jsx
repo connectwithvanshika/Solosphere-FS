@@ -194,7 +194,7 @@ export default function Home() {
               fontSize: "20px",
             }}
           >
-            No results Found 
+            No results Found
           </p>
         ) : null}
       </div>
@@ -216,7 +216,12 @@ export default function Home() {
         <MyPosts />
       </div>
 
-      <Footer onExplore={scrollToExplore} onMap={scrollToMap} />
+      <Footer
+        onExplore={scrollToExplore}
+        onMap={scrollToMap}
+        onGallery={scrollToGallery}
+        onMyPosts={scrollToMyPosts}
+      />
     </div>
   );
 }
