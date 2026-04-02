@@ -41,18 +41,29 @@ class DatabaseConnection {
   /**
    * Initializes DatabaseConnection instance with MongoDB URI
    *
+   * Why read from process.env directly:
+   * - Simplest approach, no abstraction layer needed
+   * - process.env is populated by dotenv.config() at startup
+   * - Clear where the connection string comes from
+   *
    * @constructor
-   * @param {string} [uri=process.env.MONGO_URI] - MongoDB connection string
-   * @throws {Error} If MONGO_URI is not provided or undefined
+   * @throws {Error} If MONGODB_URI is not provided in .env
    *
    * @example
-   * const db = new DatabaseConnection(process.env.MONGO_URI);
+   * const db = new DatabaseConnection();
+   * await db.connect();
    */
-  constructor(uri: string = process.env.MONGO_URI || "") {
-    if (!uri) {
-      throw new Error("MONGO_URI missing in .env");
+  constructor() {
+    // Get MongoDB URI from environment variables
+    // Why from process.env: Loaded by dotenv at application startup
+    // MONGODB_URI must be set in .env file
+    const mongoUri = process.env.MONGODB_URI;
+
+    if (!mongoUri || mongoUri.trim() === "") {
+      throw new Error("❌ MONGODB_URI is not defined or empty in .env file");
     }
-    this.uri = uri;
+
+    this.uri = mongoUri;
     this.isConnected = false;
   }
 
