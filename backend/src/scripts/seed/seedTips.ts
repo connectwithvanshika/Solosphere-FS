@@ -895,10 +895,7 @@ class DatabaseConnection {
     }
 
     try {
-      await mongoose.connect(mongoUri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      });
+      await mongoose.connect(mongoUri);
 
       console.log('✅ Connected to MongoDB successfully.');
     } catch (error) {
