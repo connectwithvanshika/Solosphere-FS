@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import cors, { CorsOptions } from "cors";
+import GlobalRouter from "./routes/GlobalRouter.js";
 
 /**
  * CORS configuration interface
@@ -91,42 +92,15 @@ export const createApp = (): Express => {
     });
   });
 
-  // Register all API route modules with their respective prefixes
-  // Why route registration here:
-  // - Centralizes all route definitions in one place
-  // - Easy to add new routes without modifying middleware setup
-  // - Clear API endpoint structure documentation
-  // - Enables conditional route registration based on environment
-  //
-  // Why prefixes like /api/auth, /api/posts:
-  // - Namespaces routes to prevent conflicts
-  // - Makes API versioning easier in future (v1, v2)
-  // - Separates API routes from static files or admin routes
-  // - Industry standard RESTful structure
-
-  // Authentication routes
-  // Why separate auth: Different validation rules, sensitive operations
-  app.use("/api/auth", require("./routes/authRoutes.js").default);
-
-  // User posts/content
-  // Why separate posts: Different permissions (users edit own posts)
-  app.use("/api/posts", require("./routes/postRoutes.js").default);
-
-  // Travel tips and advice
-  // Why separate tips: Possible different caching strategy (rarely updated)
-  app.use("/api/tips", require("./routes/tipsRoutes.js").default);
-
-  // Travel destinations and locations
-  // Why separate places: Bulk data, possibly cached separately
-  app.use("/api/places", require("./routes/placesRoutes.js").default);
-
-  // Emergency features (SOS)
-  // Why separate emergency: Critical paths, may have different rate limiting
-  app.use("/api/emergency", require("./routes/emergencyRoutes.js").default);
-
-  // Travel companion features
-  // Why separate companion: Complex matching logic, separate permissions
-  app.use("/api/companion", require("./routes/companionRoutes.js").default);
+  // Register all API routes using GlobalRouter
+  // Why GlobalRouter abstraction:
+  // - Single source of truth for all API endpoints (visible in one file)
+  // - Easy addition of new routes (just add to GlobalRouter array)
+  // - Separates route registration from middleware configuration
+  // - Enables cross-cutting concerns at route group level
+  // - Cleaner app.ts: middleware setup separate from route registration
+  const globalRouter = new GlobalRouter();
+  globalRouter.registerRoutes(app);
 
   return app;
 };
