@@ -1,88 +1,90 @@
 import express, { Router, Request, Response, NextFunction } from "express";
-import authController from "../controllers/authController.js";
+import authController from "../controllers/authController";
 
 /**
- * Validation result interface for request body validation
+ * Represents the structure of a validation outcome.
+ * 
+ * Why a dedicated type:
+ * - Establishes a consistent contract for validation logic
+ * - Avoids ambiguous return types (boolean vs object confusion)
+ * - Enables future extensibility (e.g., error codes, metadata)
  */
 interface ValidationResult {
-  isValid: boolean;
-  error?: string;
+  readonly isValid: boolean;
+  readonly errorMessage?: string;
 }
 
 /**
- * AuthRouteManager orchestrates all authentication-related route definitions and middleware
+ * Defines the expected shape of authentication-related request bodies.
  * 
- * Why a class-based route manager:
- * - Encapsulates route setup logic in a reusable, testable class
- * - Allows middleware chaining for consistent validation across routes
- * - Enables future extensibility (OAuth, 2FA, password reset routes)
- * - Centralizes route documentation and access control
- * - Makes dependency injection easier for testing
+ * Why explicit typing over generic Record<string, unknown>:
+ * - Prevents runtime ambiguity (type coercion issues)
+ * - Enables compile-time guarantees for required fields
+ * - Improves IDE inference and developer velocity
+ */
+type AuthRequestBody = {
+  name?: string;
+  email?: string;
+  password?: string;
+};
+
+/**
+ * AuthRouteManager encapsulates all authentication route orchestration.
+ * 
+ * Why class-based design:
+ * - Enables encapsulation (hiding validation + routing internals)
+ * - Supports dependency injection for testability
+ * - Scales better when adding cross-cutting concerns (rate limiting, logging)
  */
 class AuthRouteManager {
-  private router: Router;
+  private readonly router: Router;
 
-  /**
-   * Initialize the AuthRouteManager with a new Express Router instance
-   * 
-   * Why lazy route initialization:
-   * - Routes are only registered when explicitly needed
-   * - Enables conditional route registration based on environment
-   * - Cleaner separation of concerns from module loading
-   */
   constructor() {
     this.router = express.Router();
   }
 
   /**
-   * Validates request body contains required authentication fields
+   * Generates middleware for validating request payloads.
    * 
-   * Why validate on every request:
-   * - Catches malformed requests before reaching controller logic
-   * - Provides consistent validation across all auth endpoints
-   * - Reduces controller complexity by handling trivial validation here
-   * - Enables centralized error formatting for API consistency
-   * 
-   * @param requiredFields - Array of field names that must be present in request body
-   * @returns Middleware function that validates the request
+   * Why factory-based middleware:
+   * - Avoids duplicating validation logic across routes
+   * - Enables declarative route definitions (cleaner route layer)
+   * - Keeps controllers focused on business logic, not input hygiene
    */
-  private createRequestValidator(requiredFields: string[]) {
-    return (req: Request, res: Response, next: NextFunction): void => {
-      const validationResult: ValidationResult = this.validateRequestBody(req.body, requiredFields);
+  private createBodyValidator(requiredFields: (keyof AuthRequestBody)[]) {
+    return (req: Request<unknown, unknown, AuthRequestBody>, res: Response, next: NextFunction): void => {
+      const validationResult = this.validateRequestBody(req.body, requiredFields);
 
       if (!validationResult.isValid) {
-        res.status(400).json({ message: validationResult.error });
+        res.status(400).json({ message: validationResult.errorMessage });
         return;
       }
 
-      // Request is valid, proceed to next middleware/handler
       next();
     };
   }
 
   /**
-   * Validates that request body contains all required fields with proper types
+   * Validates request body against required fields.
    * 
-   * Why extract validation logic:
-   * - Reusable across multiple middleware instances
-   * - Easier to test validation independently from middleware
-   * - Follows single responsibility principle
-   * 
-   * @param requestBody - The request body to validate
-   * @param requiredFields - Array of field names that must be present
-   * @returns ValidationResult object with isValid flag and error message
+   * Why strict validation strategy:
+   * - Prevents type confusion (e.g., number passed as email)
+   * - Reduces downstream defensive coding in controllers
+   * - Acts as an early rejection layer (improves system efficiency)
    */
-  private validateRequestBody(requestBody: Record<string, any>, requiredFields: string[]): ValidationResult {
-    // Check all required fields exist and are non-empty strings
-    // Why strict type checking: Prevents type confusion bugs (number vs string for email)
-    const missingFields = requiredFields.filter(
-      (field) => !requestBody[field] || typeof requestBody[field] !== "string" || requestBody[field].toString().trim() === ""
-    );
+  private validateRequestBody(
+    requestBody: AuthRequestBody,
+    requiredFields: (keyof AuthRequestBody)[]
+  ): ValidationResult {
+    const invalidFields = requiredFields.filter((field) => {
+      const value = requestBody[field];
+      return typeof value !== "string" || value.trim().length === 0;
+    });
 
-    if (missingFields.length > 0) {
+    if (invalidFields.length > 0) {
       return {
         isValid: false,
-        error: `Missing or invalid required fields: ${missingFields.join(", ")}`,
+        errorMessage: `Missing or invalid fields: ${invalidFields.join(", ")}`,
       };
     }
 
@@ -90,55 +92,53 @@ class AuthRouteManager {
   }
 
   /**
-   * Registers all authentication routes on the router instance
+   * Registers all authentication routes.
    * 
-   * Why explicit route registration method:
-   * - Clear entry point for understanding which routes exist
-   * - Makes it easy to add/remove routes without searching through code
-   * - Follows builder pattern for fluent API setup
-   * - Centralizes route documentation
-   * 
-   * @returns The configured Express Router instance
+   * Why centralized registration:
+   * - Provides a single source of truth for route definitions
+   * - Improves discoverability for maintainers
+   * - Enables conditional route loading (feature flags, environments)
    */
-  public registerRoutes(): Router {
-    // POST /api/auth/signup
-    // Why validation middleware on signup:
-    // - Prevents invalid registration attempts before DB operations
-    // - Ensures name, email, password fields exist and are properly formatted
-    // - Reduces database load from spam/malformed requests
+  public initializeRoutes(): void {
     this.router.post(
       "/signup",
-      this.createRequestValidator(["name", "email", "password"]),
-      async (req: Request, res: Response): Promise<void> => {
-        await authController.registerUser(req, res);
-      }
+      this.createBodyValidator(["name", "email", "password"]),
+      this.handleAsync(authController.registerUser)
     );
 
-    // POST /api/auth/login
-    // Why validation middleware on login:
-    // - Immediately reject requests missing credentials (fast fail)
-    // - Prevents unnecessary database queries for incomplete requests
-    // - Protects against brute force attack patterns early in pipeline
     this.router.post(
       "/login",
-      this.createRequestValidator(["email", "password"]),
-      async (req: Request, res: Response): Promise<void> => {
-        await authController.loginUser(req, res);
-      }
+      this.createBodyValidator(["email", "password"]),
+      this.handleAsync(authController.loginUser)
     );
-
-    return this.router;
   }
 
   /**
-   * Returns the configured Express Router instance
+   * Wraps async route handlers to standardize error propagation.
    * 
-   * Why expose router getter:
-   * - Allows external code to use the router without re-instantiating
-   * - Encapsulates router instance within the class
-   * - Provides single point of access for route registration
+   * Why abstraction over try-catch:
+   * - Eliminates repetitive error handling boilerplate
+   * - Ensures all async errors are forwarded to Express error middleware
+   * - Prevents unhandled promise rejections
+   */
+  private handleAsync(
+    handler: (req: Request, res: Response) => Promise<void>
+  ) {
+    return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+      try {
+        await handler(req, res);
+      } catch (error) {
+        next(error);
+      }
+    };
+  }
+
+  /**
+   * Exposes the configured router instance.
    * 
-   * @returns The Express Router with all auth routes registered
+   * Why controlled exposure:
+   * - Prevents external mutation of internal routing logic
+   * - Maintains encapsulation boundary
    */
   public getRouter(): Router {
     return this.router;
@@ -146,29 +146,17 @@ class AuthRouteManager {
 }
 
 /**
- * Factory function to create and configure authentication routes
+ * Factory function for authentication routes.
  * 
- * Why a factory function:
- * - Simplifies setup in main server file (single line: createAuthRoutes())
- * - Hides complexity of AuthRouteManager from consumers
- * - Enables future middleware setup or configuration before export
- * - Follows consistent pattern with other route modules
- * 
- * @returns Configured Express Router with all authentication endpoints
+ * Why factory over direct export:
+ * - Decouples instantiation from usage
+ * - Enables future configuration injection (e.g., feature toggles)
+ * - Simplifies integration in application bootstrap layer
  */
 export const createAuthRoutes = (): Router => {
-  const authRouteManager = new AuthRouteManager();
-
-  // Register all authentication routes on the manager
-  authRouteManager.registerRoutes();
-
-  // Return the configured router for use in main app
-  return authRouteManager.getRouter();
+  const routeManager = new AuthRouteManager();
+  routeManager.initializeRoutes();
+  return routeManager.getRouter();
 };
 
-// Export the router function for convenience
-// Why named export + default: Allows both import styles
-// import { createAuthRoutes } from './authRoutes'
-// import createAuthRoutes from './authRoutes'
-export default createAuthRoutes();
-
+export default createAuthRoutes;

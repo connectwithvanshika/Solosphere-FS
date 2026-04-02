@@ -200,14 +200,12 @@ class GlobalRouter {
    * @returns {void}
    */
   private logRouteSummary(): void {
-    console.log(`\n📡 API Routes Summary:`);
+    console.log(`\n API Routes Summary:`);
     console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
 
     this.apiRoutes.forEach((route) => {
       console.log(`  ${route.path}`);
     });
-
-    console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
     console.log(`Total routes registered: ${this.apiRoutes.length}\n`);
   }
 
