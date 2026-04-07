@@ -1,4 +1,4 @@
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#-project-overview)
 2. [Problem Statement](#-problem-statement)
@@ -16,23 +16,23 @@
 
 ---
 
-## 🌐 Project Overview
+## Project Overview
 
 **SoloSphere** is a full-stack web application built for solo travelers. It provides a **verified, community-curated** ecosystem where users can:
 
-- 🗺️ Discover **verified safe destinations** — hostels, cafés, apartments, camps, and nature spots
-- 📝 Share and read **real safety travel posts & reviews**
-- 🧳 Browse **city-wise travel tips** categorised by Safety, Transport, Wellness, and Helplines
-- 🤝 Find **travel companions** who share similar itineraries and travel dates
-- 🆘 Trigger a **geolocation-enabled SOS alert** in emergencies
-- 🔐 Authenticate securely via **JWT-based login/signup**
-- 🛡️ Report/block users and flag inappropriate content
+- Discover **verified safe destinations** — hostels, cafés, apartments, camps, and nature spots
+- Share and read **real safety travel posts & reviews**
+- Browse **city-wise travel tips** categorised by Safety, Transport, Wellness, and Helplines
+- Find **travel companions** who share similar itineraries and travel dates
+- Trigger a **geolocation-enabled SOS alert** in emergencies
+- Authenticate securely via **JWT-based login/signup**
+- Report/block users and flag inappropriate content
 
 Built with a React + Vite frontend, an Express + TypeScript backend, and MongoDB Atlas as the cloud database — all deployable on Vercel.
 
 ---
 
-## ❗ Problem Statement
+## Problem Statement
 
 Solo travel, particularly for women and first-time explorers, presents significant challenges:
 
@@ -48,7 +48,7 @@ Solo travel, particularly for women and first-time explorers, presents significa
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -84,7 +84,7 @@ Solo travel, particularly for women and first-time explorers, presents significa
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌──────────────────────────────────────┐
@@ -124,55 +124,55 @@ Solo travel, particularly for women and first-time explorers, presents significa
 
 ---
 
-## ✨ Features
+## Features
 
-### 🔐 Authentication & Authorization
+### Authentication & Authorization
 - User **signup / login / logout** with JWT token management
 - **Role-based access control**: `user` and `admin` roles
 - Protected API routes via middleware
 - Secure **bcrypt** password hashing
 
-### 📝 Posts (Community Safety Reviews)
+### Posts (Community Safety Reviews)
 - Full **CRUD** — Create, Read, Update, Delete posts
 - Fields: Title, City, Category, Rating, Description, Image URL
 - **Author-only** editing and deletion (or admin override)
 
-### 🗺️ Safe Places Discovery
+### Safe Places Discovery
 - Browse verified safe places: Hostels, Cafés, Apartments, Camps, Nature Spots
 - **Multi-criteria filtering**: city, category, minimum rating
 - **Sorting**: by rating, review count, or most recent
 - Backend **pagination** for performance
 
-### 💡 Travel Tips Module
+### Travel Tips Module
 - 60+ curated tips across 5 major cities
 - Categories: **Safety · Transport · Wellness · Helplines**
 - Paginated tips with full modal read view
 - Admin-seeded and community-curated
 
-### 🤝 Travel Companion Matching
+### Travel Companion Matching
 - Find companions by: **City, Date Range, Gender Preference**
 - View and send **connection requests**
 - Browse others' travel plans
 
-### 🆘 Emergency SOS
+### Emergency SOS
 - One-tap SOS button visible on all pages
 - Logs **GPS coordinates** (lat/lng + city) to the database
 - Accessible even without full login (guest-friendly)
 
-### 🔎 Search, Filter, Sort & Pagination
+### Search, Filter, Sort & Pagination
 - Global search by city, keyword, category
 - Category and rating filters
 - Configurable sort order
 - Efficient pagination across all list endpoints
 
-### 🛡️ Safety Features
+### Safety Features
 - **Block users** to prevent unwanted contact
 - **Report** inappropriate content or users
 - **Verified badges** applied by admins to trusted places
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 solosphere/                        ← Root of the repository
@@ -247,7 +247,7 @@ solosphere/                        ← Root of the repository
 
 ---
 
-## 🗄️ Database Models
+## Database Models
 
 ### User
 ```js
@@ -405,7 +405,7 @@ Authorization: Bearer <JWT_TOKEN>
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 
@@ -449,7 +449,7 @@ npm run seed:places   # Seeds 16 verified safe places
 
 ---
 
-## 🚀 Running the Project
+## Running the Project
 
 Open **two terminal windows** — one for backend, one for frontend.
 
@@ -486,7 +486,7 @@ npm run preview
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 ### Backend — `backend/.env`
 
@@ -517,11 +517,11 @@ NODE_ENV=development
 VITE_API_BASE_URL=http://localhost:5001
 ```
 
-> ⚠️ **Never commit `.env` files to version control.** Both are already listed in `.gitignore`.
+> **Never commit `.env` files to version control.** Both are already listed in `.gitignore`.
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 | Service | What it hosts |
 |---------|---------------|
@@ -533,7 +533,7 @@ The `vercel.json` at the project root configures routing for the serverless back
 
 ---
 
-## 👥 Team Members & Contributions
+## Team Members & Contributions
 
 | Name | Role | Contributions |
 |------|------|---------------|
@@ -541,7 +541,7 @@ The `vercel.json` at the project root configures routing for the serverless back
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -555,7 +555,7 @@ Please make sure your code follows the existing style and that all APIs are test
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License**.
 
