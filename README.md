@@ -535,9 +535,13 @@ The `vercel.json` at the project root configures routing for the serverless back
 
 ## Team Members & Contributions
 
-| Name | Role | Contributions |
-|------|------|---------------|
-| **Vanshika Yadav** | Full Stack Developer & Project Lead | End-to-end architecture design, MongoDB schema design, all backend API routes (auth, posts, places, tips, companions, emergency), JWT middleware, React frontend pages (Home, MyPosts, Gallery, TravelCompanion, TravelTips, EmergencyMode, Map), database seeding scripts, Vercel deployment configuration |
+| Name                   | Role                                  | Contributions                                                                                                                                                                                                                                           |
+| ---------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Rohan Singh (Lead)** | System Design Lead                    | Led analysis of existing architecture and improved system structure. Worked on **System Design optimization** by modularizing backend layers and improving API flow. Defined overall architecture and ensured scalability and performance improvements. |
+| **Vanshika Yadav**     | Frontend & OOP Implementation Analyst | Analyzed frontend architecture and improved component structure. Applied **OOP concepts (Abstraction, Encapsulation)** in React components and API handling. Contributed to **Sequence Diagram (user flow)** and integration improvements.              |
+| **Riya Garg**          | Database & ER Modeling Analyst        | Studied and optimized database schema. Created **ER Diagram** and improved relationships between collections. Applied **Encapsulation in schema design** and worked on query optimization for better performance.                                       |
+| **Ronit Singh**        | Design Patterns & SOLID Engineer      | Identified and implemented **Design Patterns (MVC, Middleware)**. Ensured code follows **SOLID principles**, improving maintainability and scalability. Worked on backend structure refinement and modularization.                                      |
+| **Prakhar Srivastava** | QA & Documentation Engineer           | Designed **test cases**, validated workflows, and documented results. Created **Use Case Diagram** and contributed to defining **problem statement and solution approach**. Ensured system reliability through testing.                                 |
 
 ---
 
