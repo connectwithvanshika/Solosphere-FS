@@ -100,12 +100,106 @@ class AuthRouteManager {
    * - Enables conditional route loading (feature flags, environments)
    */
   public initializeRoutes(): void {
+    /**
+     * @swagger
+     * /auth/signup:
+     *   post:
+     *     summary: Register a new user
+     *     description: Create a new user account with email and password
+     *     tags:
+     *       - Authentication
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             required:
+     *               - name
+     *               - email
+     *               - password
+     *             properties:
+     *               name:
+     *                 type: string
+     *                 example: John Doe
+     *               email:
+     *                 type: string
+     *                 format: email
+     *                 example: john@example.com
+     *               password:
+     *                 type: string
+     *                 format: password
+     *                 example: securePassword123
+     *     responses:
+     *       200:
+     *         description: User registered successfully
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 success:
+     *                   type: boolean
+     *                 message:
+     *                   type: string
+     *                 token:
+     *                   type: string
+     *       400:
+     *         description: Validation error or user already exists
+     *       500:
+     *         description: Internal server error
+     */
     this.router.post(
       "/signup",
       this.createBodyValidator(["name", "email", "password"]),
       this.handleAsync(authController.registerUser)
     );
 
+    /**
+     * @swagger
+     * /auth/login:
+     *   post:
+     *     summary: User login
+     *     description: Authenticate user with email and password
+     *     tags:
+     *       - Authentication
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             required:
+     *               - email
+     *               - password
+     *             properties:
+     *               email:
+     *                 type: string
+     *                 format: email
+     *                 example: john@example.com
+     *               password:
+     *                 type: string
+     *                 format: password
+     *                 example: securePassword123
+     *     responses:
+     *       200:
+     *         description: Login successful
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 success:
+     *                   type: boolean
+     *                 message:
+     *                   type: string
+     *                 token:
+     *                   type: string
+     *       400:
+     *         description: Invalid credentials
+     *       500:
+     *         description: Internal server error
+     */
     this.router.post(
       "/login",
       this.createBodyValidator(["email", "password"]),

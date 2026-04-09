@@ -244,7 +244,8 @@ class AuthenticationService {
     // Step 1: Extract token from Authorization header
     const tokenExtractionResult = TokenExtractor.extractTokenFromHeader(req);
     if (!tokenExtractionResult.success) {
-      throw new Error(tokenExtractionResult.error);
+      const errorMessage = 'error' in tokenExtractionResult ? tokenExtractionResult.error : 'Unknown token extraction error';
+      throw new Error(errorMessage);
     }
 
     // Step 2: Verify token integrity

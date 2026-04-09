@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import cors, { CorsOptions } from "cors";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec, swaggerOptions } from "./config/swagger.js";
 import GlobalRouter from "./routes/GlobalRouter.js";
 
 /**
@@ -91,6 +93,28 @@ export const createApp = (): Express => {
       uptime: process.uptime(),
     });
   });
+
+  // Setup Swagger UI documentation
+  // Serves API documentation at /api-docs endpoint
+  // Light mode minimal UI with all features enabled
+  app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, {
+      customCss: swaggerOptions.customCss,
+      customSiteTitle: "Solosphere API Docs",
+      swaggerOptions: {
+        displayOperationId: false,
+        filter: true,
+        showExtensions: false,
+        deepLinking: true,
+        docExpansion: "list",
+        defaultModelsExpandDepth: 1,
+        defaultModelExpandDepth: 1,
+        tryItOutEnabled: true,
+      },
+    })
+  );
 
   // Register all API routes using GlobalRouter
   // Why GlobalRouter abstraction:
