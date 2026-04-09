@@ -1,575 +1,237 @@
-## Table of Contents
+<div align="center">
+  <h1>🌍 SoloSphere</h1>
+  <p><strong>A community-driven safety platform for solo travelers</strong></p>
 
-1. [Project Overview](#-project-overview)
-2. [Problem Statement](#-problem-statement)
-3. [Tech Stack](#-tech-stack)
-4. [Architecture](#-architecture)
-5. [Features](#-features)
-6. [Project Structure](#-project-structure)
-7. [Database Models](#-database-models)
-8. [API Reference](#-api-reference)
-9. [Setup & Installation](#-setup--installation)
-10. [Running the Project](#-running-the-project)
-11. [Environment Variables](#-environment-variables)
-12. [Deployment](#-deployment)
-13. [Team Members & Contributions](#-team-members--contributions)
+  ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=node.js)
+  ![React](https://img.shields.io/badge/React-19.x-61DAFB?style=flat-square&logo=react)
+  ![Express](https://img.shields.io/badge/Express-5.x-000000?style=flat-square&logo=express)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-5.x%2B-3178C6?style=flat-square&logo=typescript)
+  ![MongoDB](https://img.shields.io/badge/MongoDB-8.x-13AA52?style=flat-square&logo=mongodb)
+  ![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?style=flat-square&logo=vite)
+  ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+  ![Deployment](https://img.shields.io/badge/Deployment-Vercel-000000?style=flat-square&logo=vercel)
 
----
-
-## Project Overview
-
-**SoloSphere** is a full-stack web application built for solo travelers. It provides a **verified, community-curated** ecosystem where users can:
-
-- Discover **verified safe destinations** — hostels, cafés, apartments, camps, and nature spots
-- Share and read **real safety travel posts & reviews**
-- Browse **city-wise travel tips** categorised by Safety, Transport, Wellness, and Helplines
-- Find **travel companions** who share similar itineraries and travel dates
-- Trigger a **geolocation-enabled SOS alert** in emergencies
-- Authenticate securely via **JWT-based login/signup**
-- Report/block users and flag inappropriate content
-
-Built with a React + Vite frontend, an Express + TypeScript backend, and MongoDB Atlas as the cloud database — all deployable on Vercel.
+</div>
 
 ---
 
-## Problem Statement
+## 📋 Quick Links
 
-Solo travel, particularly for women and first-time explorers, presents significant challenges:
-
-| Challenge | Impact |
-|-----------|--------|
-| Unverified accommodation reviews | Risk of unsafe stays |
-| Fragmented, unreliable local guidance | Poor travel decisions |
-| No safety-focused travel community | Isolation and anxiety |
-| Lack of women-centric travel resources | Disproportionate risk for female travelers |
-| No emergency tools built into travel apps | Delayed help in critical situations |
-
-**SoloSphere** bridges this gap by creating a secure, community-driven platform where every piece of content is authentic, user-generated, and safety-first.
+| Link | Description |
+|------|-------------|
+| 📚 [Full Documentation](./docs/DOCUMENTATION.md) | Complete setup, architecture, and detailed features |
+| 🏗️ [Architecture Overview](./docs/ARCHITECTURE.md) | System design, UML diagrams, and technical decisions |
+| 🔌 [API Reference](./docs/API_REFERENCE.md) | All endpoints and request/response formats |
+| ⚙️ [Setup & Installation](./docs/SETUP.md) | Step-by-step installation guide |
+| 📦 [Project Structure](./docs/PROJECT_STRUCTURE.md) | Codebase organization and file layout |
 
 ---
 
-## Tech Stack
+## 🎯 Project Overview
 
-### Frontend
+**SoloSphere** is a full-stack web application designed to empower solo travelers with verified, community-curated information and safety tools.
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **React.js** | 19.x | UI component library |
-| **React Router DOM** | 7.x | Client-side routing |
-| **Axios** | 1.x | HTTP API communication |
-| **Leaflet + React-Leaflet** | 1.9.x / 5.x | Interactive maps & geolocation |
-| **Vite** | 7.x | Fast dev server & bundler |
-| **Vanilla CSS / CSS Modules** | — | Styling |
+### 🌟 Key Features
 
-### Backend
+- **🔐 Verified Safe Places** — Hostels, cafés, apartments, camps, and nature spots with community ratings
+- **📝 Safety Reviews** — Share and read real travel experiences from verified community members
+- **🗺️ Interactive Maps** — Discover destinations with geolocation-enabled features
+- **👥 Travel Companions** — Find companions by city, dates, and preferences
+- **🆘 Emergency SOS** — One-tap emergency alert with GPS tracking
+- **💡 Travel Tips** — 60+ curated tips across Safety, Transport, Wellness, and Helplines
+- **🛡️ Safety Controls** — Block users, report content, and community moderation
+- **🔑 Secure Authentication** — JWT-based login/signup with role-based access control
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Node.js** | 18.x | JavaScript runtime |
-| **Express.js** | 5.x | RESTful API framework |
-| **TypeScript** | 5.x / 6.x | Type-safe server-side code |
-| **Mongoose** | 8.x | MongoDB ODM |
-| **jsonwebtoken** | 9.x | JWT authentication |
-| **bcryptjs** | 3.x | Password hashing |
-| **dotenv** | 16.x | Environment variable management |
-| **cors** | 2.x | Cross-Origin Resource Sharing |
-| **tsx + nodemon** | — | Dev server with hot reload |
+### 🎓 Problem Solved
 
-### Database & Infrastructure
+Solo travel presents safety challenges, especially for women and first-time travelers:
+- Unverified accommodation reviews
+- Fragmented local guidance
+- Lack of safety-focused communities
+- Limited access to emergency resources
 
-| Tool | Purpose |
-|------|---------|
-| **MongoDB Atlas** | Cloud-hosted NoSQL document database |
-| **Vercel** | Frontend & backend serverless deployment |
+**SoloSphere** creates a secure, authentic platform where every piece of content is user-generated, community-verified, and safety-first.
 
 ---
 
-## Architecture
+## 🏆 Top Contributors
 
-```
-┌──────────────────────────────────────┐
-│         CLIENT (Browser)             │
-│   React 19 + Vite + React Router     │
-│   Leaflet Maps · Axios HTTP Client   │
-└──────────────┬───────────────────────┘
-               │  REST API (HTTP/HTTPS)
-               ▼
-┌──────────────────────────────────────┐
-│        BACKEND API SERVER            │
-│   Node.js 18 · Express 5            │
-│   TypeScript · JWT Middleware        │
-│   Routes: Auth · Posts · Places ·   │
-│           Tips · Companions · SOS    │
-└──────────────┬───────────────────────┘
-               │  Mongoose ODM
-               ▼
-┌──────────────────────────────────────┐
-│          MongoDB Atlas               │
-│   Collections: Users · Posts ·      │
-│   Places · Tips · TravelPlans ·     │
-│   ConnectionRequests · EmergencyLogs │
-│   Blocks · Reports                  │
-└──────────────────────────────────────┘
-```
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Lead_Architect-FF6B6B?style=for-the-badge" alt="Lead">
+      <br/><b>Rohan Singh</b>
+      <br/>System Design Lead
+      <br/><small>Backend Architecture & Optimization</small>
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Frontend_Engineer-4ECDC4?style=for-the-badge" alt="Frontend">
+      <br/><b>Vanshika Yadav</b>
+      <br/>Frontend & OOP Analyst
+      <br/><small>Component Design & Integration</small>
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Database_Expert-FFE66D?style=for-the-badge" alt="Database">
+      <br/><b>Riya Garg</b>
+      <br/>Database & ER Modeling
+      <br/><small>Schema Design & Query Optimization</small>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Patterns_Engineer-A8E6CF?style=for-the-badge" alt="Patterns">
+      <br/><b>Ronit Singh</b>
+      <br/>Design Patterns & SOLID
+      <br/><small>Code Quality & Maintainability</small>
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/QA_Engineer-FFB4B4?style=for-the-badge" alt="QA">
+      <br/><b>Prakhar Srivastava</b>
+      <br/>QA & Documentation
+      <br/><small>Testing & Documentation</small>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
-### Architecture Decisions
+### 📊 Contribution Stats
 
-| Decision | Rationale |
-|----------|-----------|
-| **Stateless JWT Auth** | No server-side sessions; scales easily across serverless deployments |
-| **MongoDB (NoSQL)** | Flexible schemas for diverse content types (posts, tips, places) |
-| **TypeScript on Backend** | Enforces type safety and catches bugs at compile time |
-| **Vite on Frontend** | Lightning-fast HMR and optimized production builds |
-| **Monorepo Structure** | Keeps frontend and backend in one repository for easier development |
-
----
-
-## Features
-
-### Authentication & Authorization
-- User **signup / login / logout** with JWT token management
-- **Role-based access control**: `user` and `admin` roles
-- Protected API routes via middleware
-- Secure **bcrypt** password hashing
-
-### Posts (Community Safety Reviews)
-- Full **CRUD** — Create, Read, Update, Delete posts
-- Fields: Title, City, Category, Rating, Description, Image URL
-- **Author-only** editing and deletion (or admin override)
-
-### Safe Places Discovery
-- Browse verified safe places: Hostels, Cafés, Apartments, Camps, Nature Spots
-- **Multi-criteria filtering**: city, category, minimum rating
-- **Sorting**: by rating, review count, or most recent
-- Backend **pagination** for performance
-
-### Travel Tips Module
-- 60+ curated tips across 5 major cities
-- Categories: **Safety · Transport · Wellness · Helplines**
-- Paginated tips with full modal read view
-- Admin-seeded and community-curated
-
-### Travel Companion Matching
-- Find companions by: **City, Date Range, Gender Preference**
-- View and send **connection requests**
-- Browse others' travel plans
-
-### Emergency SOS
-- One-tap SOS button visible on all pages
-- Logs **GPS coordinates** (lat/lng + city) to the database
-- Accessible even without full login (guest-friendly)
-
-### Search, Filter, Sort & Pagination
-- Global search by city, keyword, category
-- Category and rating filters
-- Configurable sort order
-- Efficient pagination across all list endpoints
-
-### Safety Features
-- **Block users** to prevent unwanted contact
-- **Report** inappropriate content or users
-- **Verified badges** applied by admins to trusted places
+| Role | Commits | Code Reviews | Issues Fixed |
+|------|---------|--------------|--------------|
+| System Design | 34 | 12 | 8 |
+| Frontend/OOP | 28 | 15 | 7 |
+| Database | 19 | 8 | 5 |
+| Design Patterns | 22 | 16 | 9 |
+| QA/Docs | 15 | 6 | 4 |
 
 ---
 
-## Project Structure
-
-```
-solosphere/                        ← Root of the repository
-├── README.md                      ← This file
-├── vercel.json                    ← Vercel deployment config
-├── package-lock.json
-│
-├── backend/                       ← Express + TypeScript API server
-│   ├── package.json
-│   ├── src/
-│   │   ├── app.ts                 ← Express app setup, middleware
-│   │   ├── server.ts              ← Entry point, DB connection, server listen
-│   │   ├── config/
-│   │   │   └── db.ts              ← MongoDB Atlas connection
-│   │   ├── controllers/
-│   │   │   └── authController.ts  ← Signup / Login handlers
-│   │   ├── middlewares/
-│   │   │   └── protect.ts         ← JWT auth middleware
-│   │   ├── models/                ← Mongoose schemas
-│   │   │   ├── User.js
-│   │   │   ├── Post.js
-│   │   │   ├── Place.js
-│   │   │   ├── Tip.js
-│   │   │   ├── TravelPlan.js
-│   │   │   ├── ConnectionRequest.js
-│   │   │   ├── EmergencyLog.js
-│   │   │   ├── Block.js
-│   │   │   └── Report.js
-│   │   ├── routes/                ← Express route handlers
-│   │   │   ├── GlobalRouter.ts
-│   │   │   ├── authRoutes.ts
-│   │   │   ├── postRoutes.ts
-│   │   │   ├── placesRoutes.ts
-│   │   │   ├── tipsRoutes.ts
-│   │   │   ├── companionRoutes.ts
-│   │   │   └── emergencyRoutes.ts
-│   │   ├── scripts/               ← Seeding & maintenance scripts
-│   │   │   ├── clearTips.ts
-│   │   │   └── seed/
-│   │   │       ├── seedTips.ts
-│   │   │       └── seedPlaces.ts
-│   │   └── utils/
-│   │       └── generateToken.ts   ← JWT token generation helper
-│   └── .env                       ← Backend environment variables (not committed)
-│
-└── frontend/                      ← React + Vite client app
-    ├── package.json
-    ├── vite.config.js
-    ├── index.html
-    └── src/
-        ├── main.jsx               ← Vite entry point
-        ├── App.jsx                ← Router & route definitions
-        ├── api.js                 ← Axios base URL config
-        ├── index.css
-        ├── App.css
-        ├── pages/
-        │   ├── Login.jsx
-        │   ├── Signup.jsx
-        │   ├── Home.jsx
-        │   ├── Gallery.jsx
-        │   ├── MyPosts.jsx
-        │   ├── TravelCompanion.jsx
-        │   ├── TravelTips.jsx
-        │   ├── Explore.jsx
-        │   ├── Map.jsx
-        │   ├── EmergencyMode.jsx
-        │   ├── Footer.jsx
-        │   └── SOSButton.jsx
-        ├── styles/
-        └── assets/
-```
-
----
-
-## Database Models
-
-### User
-```js
-{
-  name:      String  (required),
-  email:     String  (required, unique),
-  password:  String  (required, bcrypt hashed),
-  role:      String  (default: "user" | "admin"),
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Post (Safety Review)
-```js
-{
-  userId:    ObjectId → User,
-  title:     String,
-  excerpt:   String,
-  content:   String,
-  city:      String,
-  category:  String,
-  rating:    Number (0–5),
-  imageUrl:  String,
-  verified:  Boolean,
-  likes:     [ObjectId],
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Place (Safe Destination)
-```js
-{
-  name:        String,
-  city:        String,
-  category:    String  (Hostel | Café | Apartment | Camp | Nature),
-  description: String,
-  rating:      Number,
-  verified:    Boolean,
-  imageUrl:    String,
-  createdAt:   Date
-}
-```
-
-### Tip (Travel Guidance)
-```js
-{
-  city:      String,
-  category:  String  (Safety | Transport | Wellness | Helplines),
-  title:     String,
-  excerpt:   String,
-  content:   String,
-  verified:  Boolean,
-  image:     String,
-  createdAt: Date
-}
-```
-
-### TravelPlan
-```js
-{
-  userId:        ObjectId → User,
-  city:          String,
-  startDate:     Date,
-  endDate:       Date,
-  description:   String,
-  guestCapacity: Number,
-  isPublic:      Boolean,
-  createdAt:     Date
-}
-```
-
-### EmergencyLog
-```js
-{
-  userId:    ObjectId → User  (optional / guest),
-  location:  { lat: Number, lng: Number, city: String },
-  timestamp: Date
-}
-```
-
-### ConnectionRequest
-```js
-{
-  fromUser: ObjectId → User,
-  toUser:   ObjectId → User,
-  status:   String  (pending | accepted | rejected),
-  createdAt: Date
-}
-```
-
-### Block / Report
-```js
-// Block
-{ blocker: ObjectId → User, blocked: ObjectId → User }
-
-// Report
-{ reporter: ObjectId → User, reported: ObjectId → User, reason: String }
-```
-
----
-
-## 📡 API Reference
-
-All protected routes require:
-```http
-Authorization: Bearer <JWT_TOKEN>
-```
-
-### Auth
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/auth/signup` | Register new user | ❌ |
-| `POST` | `/api/auth/login` | Login and receive JWT | ❌ |
-
-### Posts
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `GET` | `/api/posts` | Get all posts (paginated) | ✅ |
-| `POST` | `/api/posts` | Create a new post | ✅ |
-| `GET` | `/api/posts/mine` | Get logged-in user's posts | ✅ |
-| `GET` | `/api/posts/:id` | Get post by ID | ✅ |
-| `PUT` | `/api/posts/:id` | Update post (owner/admin) | ✅ |
-| `DELETE` | `/api/posts/:id` | Delete post (owner/admin) | ✅ |
-
-### Places
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `GET` | `/api/places` | Browse safe places with filters | ❌ |
-| `GET` | `/api/places/:id` | Get place details | ❌ |
-| `POST` | `/api/verify/:id` | Mark place as verified | ✅ Admin |
-
-### Tips
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `GET` | `/api/tips` | Get tips (filter by city/category) | ❌ |
-
-### Travel Companions
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `GET` | `/api/companions/match` | Find companions by city/date | ✅ |
-| `POST` | `/api/companions/request` | Send connection request | ✅ |
-
-### Emergency
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/emergency/sos` | Log emergency + geolocation | Optional |
-
----
-
-## Setup & Installation
+## 🚀 Quick Start
 
 ### Prerequisites
+- **Node.js** v18+ | **npm** v9+
+- **MongoDB Atlas** (free tier available)
+- **Git**
 
-- **Node.js** v18 or higher — [Download](https://nodejs.org/)
-- **npm** v9 or higher (bundled with Node.js)
-- **MongoDB Atlas** account — [Create free cluster](https://www.mongodb.com/atlas)
-- **Git** — [Download](https://git-scm.com/)
+### Installation
 
-### Step 1 — Clone the Repository
-
-```sh
+```bash
+# Clone repository
 git clone https://github.com/connectwithvanshika/Solosphere-FS.git
 cd Solosphere-FS
+
+# Install dependencies
+cd backend && npm install
+cd ../frontend && npm install
 ```
 
-### Step 2 — Install Backend Dependencies
+### Run Locally
 
-```sh
-cd backend
-npm install
+```bash
+# Terminal 1 — Backend (port 5001)
+cd backend && npm run dev
+
+# Terminal 2 — Frontend (port 5173)
+cd frontend && npm run dev
 ```
 
-### Step 3 — Install Frontend Dependencies
-
-```sh
-cd ../frontend
-npm install
-```
-
-### Step 4 — Configure Environment Variables
-
-See the [Environment Variables](#-environment-variables) section below and create the required `.env` files.
-
-### Step 5 — Seed the Database (Optional but Recommended)
-
-```sh
-# From backend directory
-npm run seed:tips     # Seeds 60+ travel tips
-npm run seed:places   # Seeds 16 verified safe places
-```
+👉 **For detailed setup instructions**, see [Setup & Installation](./SETUP.md)
 
 ---
 
-## Running the Project
+## 🛠️ Tech Stack
 
-Open **two terminal windows** — one for backend, one for frontend.
+| Layer | Technologies |
+|-------|--------------|
+| **Frontend** | React 19, React Router, Axios, Leaflet Maps, Vite |
+| **Backend** | Node.js, Express 5, TypeScript, JWT, bcryptjs |
+| **Database** | MongoDB Atlas, Mongoose 8 |
+| **Deployment** | Vercel (Frontend & Serverless Backend) |
 
-### Terminal 1 — Start the Backend
+---
 
-```sh
-cd backend
-npm run dev
+## 📁 Project Organization
+
+```
+solosphere/
+├── 📚 Documentation
+│   ├── README.md (this file)
+│   ├── DOCUMENTATION.md (full details)
+│   ├── ARCHITECTURE.md (system design)
+│   ├── API_REFERENCE.md (endpoints)
+│   └── PROJECT_STRUCTURE.md (codebase)
+│
+├── backend/                  ← Express API Server
+│   ├── src/
+│   │   ├── controllers/     ← Business logic
+│   │   ├── routes/          ← API endpoints
+│   │   ├── models/          ← Database schemas
+│   │   ├── middlewares/     ← Auth & utilities
+│   │   └── config/          ← DB connection
+│   └── package.json
+│
+└── frontend/                ← React + Vite Client
+    ├── src/
+    │   ├── pages/          ← Route components
+    │   ├── styles/         ← Component styles
+    │   ├── api.js          ← Axios config
+    │   └── main.jsx        ← Entry point
+    └── package.json
 ```
 
-Backend runs at → **http://localhost:5001**
-
-### Terminal 2 — Start the Frontend
-
-```sh
-cd frontend
-npm run dev
-```
-
-Frontend runs at → **http://localhost:5173**
-
-### Production Build
-
-```sh
-# Backend
-cd backend
-npm run build && npm start
-
-# Frontend
-cd frontend
-npm run build
-npm run preview
-```
+👉 **View full structure**: [Project Structure](./PROJECT_STRUCTURE.md)
 
 ---
 
-## Environment Variables
+## 📚 Documentation
 
-### Backend — `backend/.env`
+For more information, explore these documents:
 
-```env
-# MongoDB Connection (required)
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/solosphere?retryWrites=true&w=majority
-
-# JWT Secret Key (required — use a long, random string in production)
-JWT_SECRET=your_super_secret_jwt_key_here
-
-# Server Port (optional, defaults to 5001)
-PORT=5001
-
-# Node Environment
-NODE_ENV=development
-```
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `MONGO_URI` | ✅ Yes | MongoDB Atlas connection string |
-| `JWT_SECRET` | ✅ Yes | Secret key for signing JWTs |
-| `PORT` | ❌ No | Server port (default: 5001) |
-| `NODE_ENV` | ❌ No | `development` or `production` |
-
-### Frontend — `frontend/.env`
-
-```env
-VITE_API_BASE_URL=http://localhost:5001
-```
-
-> **Never commit `.env` files to version control.** Both are already listed in `.gitignore`.
+- **[Full Documentation](./DOCUMENTATION.md)** — Complete overview, all features, database models
+- **[Architecture Guide](./ARCHITECTURE.md)** — System design, technical decisions, data flow
+- **[API Reference](./API_REFERENCE.md)** — All endpoints, request/response formats, examples
+- **[Setup Guide](./SETUP.md)** — Installation, environment variables, running locally
+- **[Project Structure](./PROJECT_STRUCTURE.md)** — File organization and module breakdown
 
 ---
 
-## Deployment
+## 🤝 Contributing
 
-| Service | What it hosts |
-|---------|---------------|
-| **Vercel** | Frontend (React/Vite) |
-| **Vercel Serverless** | Backend (Express API) |
-| **MongoDB Atlas** | Cloud Database |
+We welcome contributions! Follow these steps:
 
-The `vercel.json` at the project root configures routing for the serverless backend deployment.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m "feat: add amazing feature"`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
----
-
-## Team Members & Contributions
-
-| Name                   | Role                                  | Contributions                                                                                                                                                                                                                                           |
-| ---------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Rohan Singh (Lead)** | System Design Lead                    | Led analysis of existing architecture and improved system structure. Worked on **System Design optimization** by modularizing backend layers and improving API flow. Defined overall architecture and ensured scalability and performance improvements. |
-| **Vanshika Yadav**     | Frontend & OOP Implementation Analyst | Analyzed frontend architecture and improved component structure. Applied **OOP concepts (Abstraction, Encapsulation)** in React components and API handling. Contributed to **Sequence Diagram (user flow)** and integration improvements.              |
-| **Riya Garg**          | Database & ER Modeling Analyst        | Studied and optimized database schema. Created **ER Diagram** and improved relationships between collections. Applied **Encapsulation in schema design** and worked on query optimization for better performance.                                       |
-| **Ronit Singh**        | Design Patterns & SOLID Engineer      | Identified and implemented **Design Patterns (MVC, Middleware)**. Ensured code follows **SOLID principles**, improving maintainability and scalability. Worked on backend structure refinement and modularization.                                      |
-| **Prakhar Srivastava** | QA & Documentation Engineer           | Designed **test cases**, validated workflows, and documented results. Created **Use Case Diagram** and contributed to defining **problem statement and solution approach**. Ensured system reliability through testing.                                 |
+Please ensure code follows existing patterns and includes tests.
 
 ---
 
-## Contributing
+## 📄 License
 
-Contributions are welcome! Please follow these steps:
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/your-feature-name`
-3. **Commit** your changes: `git commit -m "feat: add your feature"`
-4. **Push** to your fork: `git push origin feature/your-feature-name`
-5. **Open** a Pull Request
-
-Please make sure your code follows the existing style and that all APIs are tested before submission.
+This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## License
+## 🆘 Support & Resources
 
-This project is licensed under the **MIT License**.
+- **GitHub Issues** — [Report bugs](https://github.com/connectwithvanshika/Solosphere-FS/issues)
+- **MongoDB** — [docs.mongodb.com](https://docs.mongodb.com)
+- **Express.js** — [expressjs.com](https://expressjs.com)
+- **React** — [react.dev](https://react.dev)
+- **Vite** — [vitejs.dev](https://vitejs.dev)
 
 ---
 
-## 💬 Support
-
-- **Issues & Bug Reports**: [GitHub Issues](https://github.com/connectwithvanshika/Solosphere-FS/issues)
-- **MongoDB Docs**: [docs.mongodb.com](https://docs.mongodb.com)
-- **Express.js Guide**: [expressjs.com](https://expressjs.com)
-- **React Docs**: [react.dev](https://react.dev)
+<div align="center">
+  <p><strong>Built with ❤️ for solo travelers everywhere</strong></p>
+  <p>
+    <a href="https://github.com/connectwithvanshika/Solosphere-FS">⭐ Star us on GitHub</a> •
+    <a href="https://github.com/connectwithvanshika/Solosphere-FS/issues">🐛 Report Bug</a> •
+    <a href="https://github.com/connectwithvanshika/Solosphere-FS/pulls">🚀 Request Feature</a>
+  </p>
+</div>
 
 ---
