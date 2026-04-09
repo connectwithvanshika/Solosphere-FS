@@ -215,6 +215,18 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 ---
 
+## 👨‍💻 All Contributors
+
+Thanks to all the amazing people who contributed to this project! 
+
+<a href="https://github.com/connectwithvanshika/Solosphere-FS/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=connectwithvanshika/Solosphere-FS" alt="Contributors" />
+</a>
+
+**Want to see your profile here?** [Contribute to SoloSphere](https://github.com/connectwithvanshika/Solosphere-FS/blob/main/CONTRIBUTING.md)
+
+---
+
 ## 🆘 Support & Resources
 
 - **GitHub Issues** — [Report bugs](https://github.com/connectwithvanshika/Solosphere-FS/issues)
