@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🌍 SoloSphere</h1>
+  <h1>SoloSphere</h1>
   <p><strong>A community-driven safety platform for solo travelers</strong></p>
 
   ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=node.js)
@@ -19,30 +19,30 @@
 
 | Link | Description |
 |------|-------------|
-| 📚 [Full Documentation](./docs/DOCUMENTATION.md) | Complete setup, architecture, and detailed features |
-| 🏗️ [Architecture Overview](./docs/ARCHITECTURE.md) | System design, UML diagrams, and technical decisions |
-| 🔌 [API Reference](./docs/API_REFERENCE.md) | All endpoints and request/response formats |
-| ⚙️ [Setup & Installation](./docs/SETUP.md) | Step-by-step installation guide |
-| 📦 [Project Structure](./docs/PROJECT_STRUCTURE.md) | Codebase organization and file layout |
+| [Full Documentation](./docs/DOCUMENTATION.md) | Complete setup, architecture, and detailed features |
+| [Architecture Overview](./docs/ARCHITECTURE.md) | System design, UML diagrams, and technical decisions |
+| [API Reference](./docs/API_REFERENCE.md) | All endpoints and request/response formats |
+| [Setup & Installation](./docs/SETUP.md) | Step-by-step installation guide |
+| [Project Structure](./docs/PROJECT_STRUCTURE.md) | Codebase organization and file layout |
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 **SoloSphere** is a full-stack web application designed to empower solo travelers with verified, community-curated information and safety tools.
 
-### 🌟 Key Features
+### Key Features
 
-- **🔐 Verified Safe Places** — Hostels, cafés, apartments, camps, and nature spots with community ratings
-- **📝 Safety Reviews** — Share and read real travel experiences from verified community members
-- **🗺️ Interactive Maps** — Discover destinations with geolocation-enabled features
-- **👥 Travel Companions** — Find companions by city, dates, and preferences
-- **🆘 Emergency SOS** — One-tap emergency alert with GPS tracking
-- **💡 Travel Tips** — 60+ curated tips across Safety, Transport, Wellness, and Helplines
-- **🛡️ Safety Controls** — Block users, report content, and community moderation
-- **🔑 Secure Authentication** — JWT-based login/signup with role-based access control
+- **Verified Safe Places** — Hostels, cafés, apartments, camps, and nature spots with community ratings
+- **Safety Reviews** — Share and read real travel experiences from verified community members
+- **Interactive Maps** — Discover destinations with geolocation-enabled features
+- **Travel Companions** — Find companions by city, dates, and preferences
+- **Emergency SOS** — One-tap emergency alert with GPS tracking
+- **Travel Tips** — 60+ curated tips across Safety, Transport, Wellness, and Helplines
+- **Safety Controls** — Block users, report content, and community moderation
+- **Secure Authentication** — JWT-based login/signup with role-based access control
 
-### 🎓 Problem Solved
+### Problem Solved
 
 Solo travel presents safety challenges, especially for women and first-time travelers:
 - Unverified accommodation reviews
@@ -54,7 +54,7 @@ Solo travel presents safety challenges, especially for women and first-time trav
 
 ---
 
-## 🏆 Top Contributors
+## Top Contributors
 
 <table>
   <tr>
@@ -94,7 +94,7 @@ Solo travel presents safety challenges, especially for women and first-time trav
   </tr>
 </table>
 
-### 📊 Contribution Stats
+### Contribution Stats
 
 | Role | Commits | Code Reviews | Issues Fixed |
 |------|---------|--------------|--------------|
@@ -106,7 +106,7 @@ Solo travel presents safety challenges, especially for women and first-time trav
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Node.js** v18+ | **npm** v9+
@@ -135,11 +135,11 @@ cd backend && npm run dev
 cd frontend && npm run dev
 ```
 
-👉 **For detailed setup instructions**, see [Setup & Installation](./SETUP.md)
+**For detailed setup instructions**, see [Setup & Installation](./SETUP.md)
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technologies |
 |-------|--------------|
@@ -150,11 +150,11 @@ cd frontend && npm run dev
 
 ---
 
-## 📁 Project Organization
+## Project Organization
 
 ```
 solosphere/
-├── 📚 Documentation
+├── Documentation
 │   ├── README.md (this file)
 │   ├── DOCUMENTATION.md (full details)
 │   ├── ARCHITECTURE.md (system design)
@@ -179,11 +179,11 @@ solosphere/
     └── package.json
 ```
 
-👉 **View full structure**: [Project Structure](./PROJECT_STRUCTURE.md)
+ **View full structure**: [Project Structure](./PROJECT_STRUCTURE.md)
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 For more information, explore these documents:
 
@@ -195,7 +195,7 @@ For more information, explore these documents:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Follow these steps:
 
@@ -209,13 +209,13 @@ Please ensure code follows existing patterns and includes tests.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## 👨‍💻 All Contributors
+## All Contributors
 
 Thanks to all the amazing people who contributed to this project! 
 
@@ -227,7 +227,7 @@ Thanks to all the amazing people who contributed to this project!
 
 ---
 
-## 🆘 Support & Resources
+## Support & Resources
 
 - **GitHub Issues** — [Report bugs](https://github.com/connectwithvanshika/Solosphere-FS/issues)
 - **MongoDB** — [docs.mongodb.com](https://docs.mongodb.com)
@@ -240,9 +240,9 @@ Thanks to all the amazing people who contributed to this project!
 <div align="center">
   <p><strong>Built with ❤️ for solo travelers everywhere</strong></p>
   <p>
-    <a href="https://github.com/connectwithvanshika/Solosphere-FS">⭐ Star us on GitHub</a> •
-    <a href="https://github.com/connectwithvanshika/Solosphere-FS/issues">🐛 Report Bug</a> •
-    <a href="https://github.com/connectwithvanshika/Solosphere-FS/pulls">🚀 Request Feature</a>
+    <a href="https://github.com/connectwithvanshika/Solosphere-FS">Star us on GitHub</a> •
+    <a href="https://github.com/connectwithvanshika/Solosphere-FS/issues">Report Bug</a> •
+    <a href="https://github.com/connectwithvanshika/Solosphere-FS/pulls">Request Feature</a>
   </p>
 </div>
 
