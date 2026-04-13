@@ -114,14 +114,6 @@ export const swaggerOptions = {
     filter: true,
     showExtensions: false,
     deepLinking: true,
-    presets: [
-      require('swagger-ui-dist/swagger-ui'),
-      require('swagger-ui-dist/swagger-ui-standalone-preset'),
-    ],
-    plugins: [
-      require('swagger-ui-dist/swagger-ui-bundle').plugins.DownloadUrl,
-    ],
-    layout: 'StandalonePresetLayout',
     defaultModelsExpandDepth: 1,
     defaultModelExpandDepth: 1,
     docExpansion: 'list',
