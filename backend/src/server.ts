@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 // Load environment variables from .env file at startup
 // Why at very top: Must load before ANY imports that access process.env
 // This ensures db.ts and other modules can read environment variables when they load
-dotenv.config();
+dotenv.config({
+  path: "./.env",
+});
 
 import { Express } from "express";
 import { createApp } from "./app.js";

@@ -6,7 +6,7 @@ import { Express } from "express";
  */
 interface APIRoute {
   path: string;
-  handler: any; // Express Router instance
+  handler: () => Promise<any>; // Lazy async loader for ESM compatibility
 }
 
 /**
@@ -63,58 +63,27 @@ class GlobalRouter {
     this.apiRoutes = [
       {
         path: "/api/auth",
-        handler: require("./authRoutes.ts").default,
-        // Why separate auth:
-        // - Different validation rules (email format, password requirements)
-        // - Sensitive operations (password hashing, token generation)
-        // - Different rate limiting needs (login attempts)
-        // - Security-critical path that may need additional middleware
+        handler: async () => (await import("./authRoutes.js")).default,
       },
       {
         path: "/api/posts",
-        handler: require("./postRoutes.js").default,
-        // Why separate posts:
-        // - Different permissions model (users can only edit own posts)
-        // - Possible caching strategy (recent posts cached)
-        // - Different validation (content length limits)
-        // - Social features (likes, comments)
+        handler: async () => (await import("./postRoutes.js")).default,
       },
       {
         path: "/api/tips",
-        handler: require("./tipsRoutes.js").default,
-        // Why separate tips:
-        // - Admin-only write operations (tips rarely updated)
-        // - Possible aggressive caching (read-heavy, stable data)
-        // - Public-facing data (no auth required for GET)
-        // - Different performance requirements
+        handler: async () => (await import("./tipsRoutes.js")).default,
       },
       {
         path: "/api/places",
-        handler: require("./placesRoutes.js").default,
-        // Why separate places:
-        // - Bulk data operations (potentially large datasets)
-        // - Geographic queries (location-based filtering)
-        // - Possible database indexing specific to coordinates
-        // - Reference data (rarely changes after initial load)
+        handler: async () => (await import("./placesRoutes.js")).default,
       },
       {
         path: "/api/emergency",
-        handler: require("./emergencyRoutes.js").default,
-        // Why separate emergency:
-        // - Critical path (SOS features, safety-critical)
-        // - Different rate limiting (may need higher limits for emergencies)
-        // - Possible different logging/monitoring requirements
-        // - May have different auth requirements (location sharing)
-        // - Needs instant response (may bypass normal validation)
+        handler: async () => (await import("./emergencyRoutes.js")).default,
       },
       {
         path: "/api/companion",
-        handler: require("./companionRoutes.js").default,
-        // Why separate companion:
-        // - Complex matching logic (finding compatible travel companions)
-        // - Different permission model (match visibility, privacy)
-        // - Possible notification requirements (new match alerts)
-        // - Complex data relationships (preferences, past matches)
+        handler: async () => (await import("./companionRoutes.js")).default,
       },
     ];
   }
@@ -123,7 +92,7 @@ class GlobalRouter {
    * Registers all API routes on the provided Express application
    * 
    * Why this method:
-   * - Single method call in app.ts replaces 6 separate route.use() calls
+   * - Single method call in app.ts replaces multiple route.use() calls
    * - Centralizes all route registration in one logical place
    * - Easy to add logging, validation, or middleware to all routes at once
    * - Separates route registration logic from middleware setup
@@ -134,28 +103,30 @@ class GlobalRouter {
    * - Single source of truth for routes
    * 
    * @param app - Express application instance to register routes on
-   * @returns {void}
-   * 
-   * @example
-   * const globalRouter = new GlobalRouter();
-   * globalRouter.registerRoutes(app);
+   * @returns {Promise<void>}
    */
-  public registerRoutes(app: Express): void {
+  public async registerRoutes(app: Express): Promise<void> {
     // Register each API route with its path
-    // Why loop: Scalable approach vs. hardcoding 6 separate app.use() calls
-    this.apiRoutes.forEach((route) => {
+    // Why loop: Scalable approach vs. hardcoding separate app.use() calls
+    for (const route of this.apiRoutes) {
+      // Dynamically load route handler (ESM compatible)
+      const handler = await route.handler();
+
       // Validate route configuration before registering
       // Why validate: Catch configuration errors early (missing path, null handler)
-      this.validateRouteConfiguration(route);
+      this.validateRouteConfiguration({
+        path: route.path,
+        handler,
+      });
 
       // Register route with Express
       // app.use() mounts router at specified path
-      app.use(route.path, route.handler);
+      app.use(route.path, handler);
 
       // Log route registration for startup visibility
       // Why log: Developers can see all registered routes on server startup
       console.log(`✓ Registered route: ${route.path}`);
-    });
+    }
 
     this.logRouteSummary();
   }
@@ -173,15 +144,13 @@ class GlobalRouter {
    * @param route - Route configuration to validate
    * @throws Error if route configuration is invalid
    */
-  private validateRouteConfiguration(route: APIRoute): void {
+  private validateRouteConfiguration(route: { path: string; handler: any }): void {
     // Validate path exists and is non-empty
-    // Why check: Route needs a path to mount on
     if (!route.path || typeof route.path !== "string") {
       throw new Error(`❌ Invalid route path: ${route.path}. Must be a non-empty string.`);
     }
 
     // Validate handler exists
-    // Why check: Route needs a handler (Express Router) to process requests
     if (!route.handler) {
       throw new Error(`❌ Missing route handler for path: ${route.path}`);
     }
@@ -206,6 +175,7 @@ class GlobalRouter {
     this.apiRoutes.forEach((route) => {
       console.log(`  ${route.path}`);
     });
+
     console.log(`Total routes registered: ${this.apiRoutes.length}\n`);
   }
 
