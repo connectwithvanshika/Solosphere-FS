@@ -321,15 +321,84 @@ function createTipsRouter(): Router {
   const tipsController = new TipsController(tipsService);
 
   /**
-   * GET /
-   * Discover travel tips with optional filtering and pagination.
-   *
-   * Query parameters:
-   *   - city: Filter by destination city (optional, default: "All")
-   *   - category: Filter by tip category (optional, default: "All")
-   *   - search: Full-text search across title/excerpt/content (optional)
-   *   - page: Page number for pagination (optional, default: 1)
-   *   - limit: Items per page (optional, default: 6, max: 100)
+   * @swagger
+   * /tips:
+   *   get:
+   *     summary: Discover travel tips and guides
+   *     description: Browse travel safety tips, destination guides, and community knowledge with filtering and pagination
+   *     tags:
+   *       - Travel Tips
+   *     parameters:
+   *       - in: query
+   *         name: city
+   *         schema:
+   *           type: string
+   *         description: Filter tips by destination city (default "All" for no filter)
+   *       - in: query
+   *         name: category
+   *         schema:
+   *           type: string
+   *         description: Filter by tip category like safety, transportation, food (default "All" for no filter)
+   *       - in: query
+   *         name: search
+   *         schema:
+   *           type: string
+   *         description: Full-text search across tip titles, excerpts, and content
+   *       - in: query
+   *         name: page
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *         description: Page number for pagination (default 1)
+   *       - in: query
+   *         name: limit
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *           maximum: 100
+   *         description: Number of results per page (default 6, max 100)
+   *     responses:
+   *       200:
+   *         description: Successfully retrieved tips with pagination metadata
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 tips:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *                     properties:
+   *                       _id:
+   *                         type: string
+   *                       city:
+   *                         type: string
+   *                       category:
+   *                         type: string
+   *                       title:
+   *                         type: string
+   *                       excerpt:
+   *                         type: string
+   *                       content:
+   *                         type: string
+   *                       verified:
+   *                         type: boolean
+   *                       image:
+   *                         type: string
+   *                       createdAt:
+   *                         type: string
+   *                         format: date-time
+   *                 total:
+   *                   type: integer
+   *                 totalPages:
+   *                   type: integer
+   *                 currentPage:
+   *                   type: integer
+   *       400:
+   *         description: Validation error in query parameters
+   *       500:
+   *         description: Server error
    */
   router.get("/", tipsController.discoverTips);
 

@@ -45,25 +45,41 @@ export const swaggerSpec = swaggerJsdoc(options);
 
 export const swaggerOptions = {
   customCss: `
+    /* Force light mode colors */
+    :root {
+      --color-border: #e0e0e0 !important;
+      --color-text: #333333 !important;
+      --color-bg: #ffffff !important;
+      --color-bg-secondary: #f5f5f5 !important;
+    }
+    
+    /* Main background and text */
+    body {
+      background-color: #ffffff !important;
+      color: #333333 !important;
+    }
+
     .swagger-ui {
-      --color-border: #e0e0e0;
-      --color-text: #333333;
-      --color-bg: #ffffff;
-      --color-bg-secondary: #f5f5f5;
+      --color-border: #e0e0e0 !important;
+      --color-text: #333333 !important;
+      --color-bg: #ffffff !important;
+      --color-bg-secondary: #f5f5f5 !important;
+      background-color: #ffffff !important;
+      color: #333333 !important;
     }
     
     .swagger-ui .topbar {
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #e0e0e0;
+      background-color: #f5f5f5 !important;
+      border-bottom: 1px solid #e0e0e0 !important;
     }
 
     .swagger-ui .info {
-      color: #333333;
+      color: #333333 !important;
     }
 
     .swagger-ui .scheme-container {
-      background: #f5f5f5;
-      border: 1px solid #e0e0e0;
+      background: #f5f5f5 !important;
+      border: 1px solid #e0e0e0 !important;
     }
 
     .swagger-ui .btn {
@@ -71,51 +87,83 @@ export const swaggerOptions = {
     }
 
     .swagger-ui .btn.authorization__btn {
-      background-color: #007bff;
-      border-color: #007bff;
+      background-color: #007bff !important;
+      border-color: #007bff !important;
     }
 
     .swagger-ui .btn.authorize {
-      background-color: #28a745;
-      border-color: #28a745;
+      background-color: #28a745 !important;
+      border-color: #28a745 !important;
     }
 
     .swagger-ui .model-container {
-      background: #f5f5f5;
-      border: 1px solid #e0e0e0;
+      background: #f5f5f5 !important;
+      border: 1px solid #e0e0e0 !important;
     }
 
     .swagger-ui .topbar-main {
-      background: #ffffff;
-    }
-
-    body {
-      background-color: #ffffff;
+      background: #ffffff !important;
     }
 
     .swagger-ui select {
-      background-color: #ffffff;
-      border: 1px solid #e0e0e0;
-      color: #333333;
+      background-color: #ffffff !important;
+      border: 1px solid #e0e0e0 !important;
+      color: #333333 !important;
     }
 
-    .swagger-ui textarea, .swagger-ui input[type="text"], .swagger-ui input[type="password"], .swagger-ui input[type="search"], .swagger-ui input[type="email"], .swagger-ui input[type="url"] {
-      background-color: #ffffff;
-      border: 1px solid #e0e0e0;
-      color: #333333;
+    /* Additional light mode overrides */
+    .swagger-ui .parameter__name {
+      color: #333333 !important;
     }
 
-    .swagger-ui .response-col_description__inner {
-      background: #f5f5f5;
+    .swagger-ui .opblock {
+      border: 1px solid #e0e0e0 !important;
+    }
+
+    .swagger-ui .opblock.opblock-post {
+      background: rgba(51, 230, 102, 0.1) !important;
+    }
+
+    .swagger-ui .opblock.opblock-get {
+      background: rgba(102, 192, 244, 0.1) !important;
+    }
+
+    .swagger-ui .opblock.opblock-put {
+      background: rgba(252, 211, 77, 0.1) !important;
+    }
+
+    .swagger-ui .opblock.opblock-delete {
+      background: rgba(239, 83, 80, 0.1) !important;
+    }
+
+    .swagger-ui .opblock.opblock-patch {
+      background: rgba(156, 39, 176, 0.1) !important;
+    }
+
+    .swagger-ui table {
+      background-color: #ffffff !important;
+      color: #333333 !important;
+    }
+
+    .swagger-ui table tbody tr:hover {
+      background-color: #f5f5f5 !important;
+    }
+
+    .swagger-ui input, 
+    .swagger-ui textarea {
+      background-color: #ffffff !important;
+      color: #333333 !important;
+      border: 1px solid #e0e0e0 !important;
+    }
+
+    .swagger-ui .tab {
+      background-color: #f5f5f5 !important;
+      color: #333333 !important;
+    }
+
+    .swagger-ui .tab.active {
+      background-color: #ffffff !important;
+      border-bottom: 2px solid #007bff !important;
     }
   `,
-  swaggerOptions: {
-    displayOperationId: false,
-    filter: true,
-    showExtensions: false,
-    deepLinking: true,
-    defaultModelsExpandDepth: 1,
-    defaultModelExpandDepth: 1,
-    docExpansion: 'list',
-  },
 };

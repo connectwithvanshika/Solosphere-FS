@@ -338,14 +338,86 @@ function createPlacesRouter(): Router {
   const placesController = new PlacesController(placesService);
 
   /**
-   * GET /
-   * Discover places with optional filtering, searching, and pagination.
-   * Query parameters:
-   *   - search: Text to search in place name or city (optional)
-   *   - category: Filter by category (optional, default: "All")
-   *   - sort: Sort by "rating", "reviews", or "recent" (optional, default: "rating")
-   *   - page: Page number (optional, default: 1)
-   *   - limit: Items per page (optional, default: 12, max: 100)
+   * @swagger
+   * /places:
+   *   get:
+   *     summary: Discover travel places
+   *     description: Search and discover travel destinations with filtering, searching, and pagination
+   *     tags:
+   *       - Places
+   *     parameters:
+   *       - in: query
+   *         name: search
+   *         schema:
+   *           type: string
+   *         description: Search term to find places by name or city
+   *       - in: query
+   *         name: category
+   *         schema:
+   *           type: string
+   *         description: Filter by place category (default "All" for no filter)
+   *       - in: query
+   *         name: sort
+   *         schema:
+   *           type: string
+   *           enum: [rating, reviews, recent]
+   *         description: Sort results by rating, reviews, or recent (default "rating")
+   *       - in: query
+   *         name: page
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *         description: Page number for pagination (default 1)
+   *       - in: query
+   *         name: limit
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *           maximum: 100
+   *         description: Number of results per page (default 12, max 100)
+   *     responses:
+   *       200:
+   *         description: Successfully retrieved places with pagination metadata
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 success:
+   *                   type: boolean
+   *                 places:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *                     properties:
+   *                       _id:
+   *                         type: string
+   *                       name:
+   *                         type: string
+   *                       city:
+   *                         type: string
+   *                       rating:
+   *                         type: number
+   *                       reviews:
+   *                         type: integer
+   *                       category:
+   *                         type: string
+   *                       verified:
+   *                         type: boolean
+   *                       image:
+   *                         type: string
+   *                       description:
+   *                         type: string
+   *                 total:
+   *                   type: integer
+   *                 totalPages:
+   *                   type: integer
+   *                 currentPage:
+   *                   type: integer
+   *       400:
+   *         description: Validation error in query parameters
+   *       500:
+   *         description: Server error
    */
   router.get("/", placesController.discoverPlaces);
 

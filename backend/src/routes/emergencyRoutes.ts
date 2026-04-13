@@ -202,6 +202,86 @@ function createEmergencyRouter(): Router {
   const emergencyService = new EmergencyService();
   const emergencyController = new EmergencyController(emergencyService);
 
+  /**
+   * @swagger
+   * /emergency/log:
+   *   post:
+   *     summary: Log emergency activation
+   *     description: Record an SOS (emergency) activation with precise geolocation data. Can be called by authenticated users or guests
+   *     tags:
+   *       - Emergency
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - lat
+   *               - lng
+   *             properties:
+   *               userId:
+   *                 type: string
+   *                 description: Optional user ID if authenticated
+   *                 example: 507f1f77bcf86cd799439011
+   *               lat:
+   *                 type: number
+   *                 format: double
+   *                 minimum: -90
+   *                 maximum: 90
+   *                 example: 48.8566
+   *               lng:
+   *                 type: number
+   *                 format: double
+   *                 minimum: -180
+   *                 maximum: 180
+   *                 example: 2.3522
+   *               city:
+   *                 type: string
+   *                 description: Optional city name for reference
+   *                 example: Paris
+   *     responses:
+   *       201:
+   *         description: Emergency logged successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 success:
+   *                   type: boolean
+   *                 log:
+   *                   type: object
+   *                   properties:
+   *                     _id:
+   *                       type: string
+   *                     userId:
+   *                       type: string
+   *                     location:
+   *                       type: object
+   *                       properties:
+   *                         lat:
+   *                           type: number
+   *                         lng:
+   *                           type: number
+   *                         city:
+   *                           type: string
+   *                     createdAt:
+   *                       type: string
+   *                       format: date-time
+   *       400:
+   *         description: Validation error - invalid geolocation coordinates
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 message:
+   *                   type: string
+   *                   example: Latitude must be between -90 and 90
+   *       500:
+   *         description: Server error
+   */
   router.post("/log", emergencyController.logEmergency);
 
   return router;

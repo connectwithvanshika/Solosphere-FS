@@ -648,14 +648,264 @@ function createPostRouter(): Router {
   const postService = new PostService();
   const postController = new PostController(postService);
 
+  /**
+   * @swagger
+   * /posts:
+   *   post:
+   *     summary: Create a new travel post
+   *     description: Create a new travel accommodation or venue post with details and ratings
+   *     tags:
+   *       - Posts
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - title
+   *               - description
+   *               - category
+   *               - city
+   *               - tags
+   *             properties:
+   *               title:
+   *                 type: string
+   *                 example: Great hostel in downtown Paris
+   *               description:
+   *                 type: string
+   *                 example: Amazing central location with friendly staff and clean rooms
+   *               rating:
+   *                 type: number
+   *                 minimum: 0
+   *                 maximum: 5
+   *                 example: 4.5
+   *               imageUrl:
+   *                 type: string
+   *                 format: uri
+   *                 example: https://example.com/image.jpg
+   *               category:
+   *                 type: string
+   *                 enum: [Hostel, Apartment, Camp, Private Stay, Shared, Café]
+   *                 example: Hostel
+   *               city:
+   *                 type: string
+   *                 example: Paris
+   *               tags:
+   *                 type: array
+   *                 items:
+   *                   type: string
+   *                 example: [clean, budget-friendly, social]
+   *               lat:
+   *                 type: number
+   *                 example: 48.8566
+   *               lng:
+   *                 type: number
+   *                 example: 2.3522
+   *     responses:
+   *       201:
+   *         description: Post created successfully
+   *       400:
+   *         description: Validation error - missing required fields
+   *       500:
+   *         description: Server error
+   */
   router.post("/", postController.createPost);
 
+  /**
+   * @swagger
+   * /posts/mine:
+   *   get:
+   *     summary: Get current user's posts
+   *     description: Retrieve all travel posts created by the authenticated user
+   *     tags:
+   *       - Posts
+   *     responses:
+   *       200:
+   *         description: User's posts retrieved successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *       500:
+   *         description: Server error
+   */
   router.get("/mine", postController.getUserPosts);
 
+  /**
+   * @swagger
+   * /posts:
+   *   get:
+   *     summary: Search and filter travel posts
+   *     description: Search travel posts with advanced filtering including location, dates, safety scores, and capacity
+   *     tags:
+   *       - Posts
+   *     parameters:
+   *       - in: query
+   *         name: city
+   *         schema:
+   *           type: string
+   *         description: Filter by city
+   *       - in: query
+   *         name: category
+   *         schema:
+   *           type: string
+   *           enum: [Hostel, Apartment, Camp, Private Stay, Shared, Café]
+   *         description: Filter by accommodation category
+   *       - in: query
+   *         name: tags
+   *         schema:
+   *           type: string
+   *         description: Comma-separated list of tags to filter by
+   *       - in: query
+   *         name: guests
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *         description: Minimum guest capacity required
+   *       - in: query
+   *         name: checkin
+   *         schema:
+   *           type: string
+   *           format: date
+   *         description: Check-in date filter
+   *       - in: query
+   *         name: checkout
+   *         schema:
+   *           type: string
+   *           format: date
+   *         description: Check-out date filter
+   *       - in: query
+   *         name: sort
+   *         schema:
+   *           type: string
+   *           enum: [rating, recent]
+   *         description: Sort by rating or recent (default "recent")
+   *       - in: query
+   *         name: safeAfterNine
+   *         schema:
+   *           type: string
+   *           enum: [true, false]
+   *         description: Filter for high night safety scores
+   *       - in: query
+   *         name: page
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *         description: Page number for pagination (default 1)
+   *       - in: query
+   *         name: limit
+   *         schema:
+   *           type: integer
+   *           minimum: 1
+   *           maximum: 100
+   *         description: Results per page (default 20, max 100)
+   *     responses:
+   *       200:
+   *         description: Posts retrieved with pagination metadata
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 success:
+   *                   type: boolean
+   *                 total:
+   *                   type: integer
+   *                 page:
+   *                   type: integer
+   *                 results:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *       400:
+   *         description: Validation error in query parameters
+   *       500:
+   *         description: Server error
+   */
   router.get("/", postController.searchPosts);
 
+  /**
+   * @swagger
+   * /posts/{id}:
+   *   put:
+   *     summary: Update a travel post
+   *     description: Update details of an existing travel post
+   *     tags:
+   *       - Posts
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: Post ID to update
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               title:
+   *                 type: string
+   *               description:
+   *                 type: string
+   *               rating:
+   *                 type: number
+   *                 minimum: 0
+   *                 maximum: 5
+   *               imageUrl:
+   *                 type: string
+   *               category:
+   *                 type: string
+   *               city:
+   *                 type: string
+   *               tags:
+   *                 type: array
+   *                 items:
+   *                   type: string
+   *               lat:
+   *                 type: number
+   *               lng:
+   *                 type: number
+   *     responses:
+   *       200:
+   *         description: Post updated successfully
+   *       404:
+   *         description: Post not found
+   *       400:
+   *         description: Validation error
+   *       500:
+   *         description: Server error
+   */
   router.put("/:id", postController.updatePost);
 
+  /**
+   * @swagger
+   * /posts/{id}:
+   *   delete:
+   *     summary: Delete a travel post
+   *     description: Remove a travel post from the system
+   *     tags:
+   *       - Posts
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: Post ID to delete
+   *     responses:
+   *       200:
+   *         description: Post deleted successfully
+   *       404:
+   *         description: Post not found
+   *       500:
+   *         description: Server error
+   */
   router.delete("/:id", postController.deletePost);
 
   return router;

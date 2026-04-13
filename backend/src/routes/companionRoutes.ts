@@ -340,20 +340,274 @@ function createCompanionRouter(): Router {
   const companionService = new TravelCompanionService();
   const companionController = new TravelCompanionController(companionService);
 
+  /**
+   * @swagger
+   * /companion/plans:
+   *   post:
+   *     summary: Create or update travel companion plan
+   *     description: Create a new travel plan or update existing one with travel dates and preferences
+   *     tags:
+   *       - Travel Companion
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - userId
+   *               - city
+   *               - startDate
+   *               - endDate
+   *               - genderPreference
+   *             properties:
+   *               userId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439011
+   *               city:
+   *                 type: string
+   *                 example: Paris
+   *               startDate:
+   *                 type: string
+   *                 format: date-time
+   *                 example: 2024-06-01
+   *               endDate:
+   *                 type: string
+   *                 format: date-time
+   *                 example: 2024-06-10
+   *               genderPreference:
+   *                 type: string
+   *                 enum: [female-only, all]
+   *                 example: all
+   *     responses:
+   *       200:
+   *         description: Plan created or updated successfully
+   *       400:
+   *         description: Validation error - invalid dates or missing fields
+   *       500:
+   *         description: Server error
+   */
   router.post("/plans", companionController.createOrUpdatePlan);
 
+  /**
+   * @swagger
+   * /companion/plans/{userId}:
+   *   get:
+   *     summary: Retrieve user's travel plan
+   *     description: Get the travel plan details for a specific user
+   *     tags:
+   *       - Travel Companion
+   *     parameters:
+   *       - in: path
+   *         name: userId
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: User ID
+   *     responses:
+   *       200:
+   *         description: Travel plan retrieved successfully
+   *       404:
+   *         description: No travel plan found for user
+   *       500:
+   *         description: Server error
+   */
   router.get("/plans/:userId", companionController.getPlan);
 
+  /**
+   * @swagger
+   * /companion/matches/{userId}:
+   *   get:
+   *     summary: Find compatible travel companions
+   *     description: Find users with matching travel dates, destination, and preferences
+   *     tags:
+   *       - Travel Companion
+   *     parameters:
+   *       - in: path
+   *         name: userId
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: User ID to find matches for
+   *     responses:
+   *       200:
+   *         description: List of compatible travel companions
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *       204:
+   *         description: No matches found
+   *       500:
+   *         description: Server error
+   */
   router.get("/matches/:userId", companionController.getMatches);
 
+  /**
+   * @swagger
+   * /companion/connect/request:
+   *   post:
+   *     summary: Send connection request to another user
+   *     description: Send a connection request to match with another traveler
+   *     tags:
+   *       - Travel Companion
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - senderId
+   *               - receiverId
+   *             properties:
+   *               senderId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439011
+   *               receiverId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439012
+   *     responses:
+   *       201:
+   *         description: Connection request sent successfully
+   *       400:
+   *         description: Request already sent or validation error
+   *       500:
+   *         description: Server error
+   */
   router.post("/connect/request", companionController.sendRequest);
 
+  /**
+   * @swagger
+   * /companion/connect/respond:
+   *   patch:
+   *     summary: Respond to connection request
+   *     description: Accept or decline a pending connection request from another user
+   *     tags:
+   *       - Travel Companion
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - requestId
+   *               - status
+   *             properties:
+   *               requestId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439011
+   *               status:
+   *                 type: string
+   *                 enum: [accepted, declined]
+   *                 example: accepted
+   *     responses:
+   *       200:
+   *         description: Request responded to successfully
+   *       404:
+   *         description: Connection request not found
+   *       500:
+   *         description: Server error
+   */
   router.patch("/connect/respond", companionController.respondToRequest);
 
+  /**
+   * @swagger
+   * /companion/connect/requests/{userId}:
+   *   get:
+   *     summary: Get pending connection requests
+   *     description: Retrieve all pending connection requests for a user
+   *     tags:
+   *       - Travel Companion
+   *     parameters:
+   *       - in: path
+   *         name: userId
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: User ID to fetch pending requests for
+   *     responses:
+   *       200:
+   *         description: List of pending connection requests
+   *       500:
+   *         description: Server error
+   */
   router.get("/connect/requests/:userId", companionController.getPendingRequests);
 
+  /**
+   * @swagger
+   * /companion/block:
+   *   post:
+   *     summary: Block a user
+   *     description: Block another user to prevent them from appearing in your matches
+   *     tags:
+   *       - Safety
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - blockerId
+   *               - blockedUserId
+   *             properties:
+   *               blockerId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439011
+   *               blockedUserId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439012
+   *     responses:
+   *       200:
+   *         description: User blocked successfully
+   *       400:
+   *         description: Validation error
+   *       500:
+   *         description: Server error
+   */
   router.post("/block", companionController.blockUser);
 
+  /**
+   * @swagger
+   * /companion/report:
+   *   post:
+   *     summary: Report a user
+   *     description: Report another user for inappropriate behavior or safety concerns
+   *     tags:
+   *       - Safety
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - reporterId
+   *               - reportedUserId
+   *               - reason
+   *             properties:
+   *               reporterId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439011
+   *               reportedUserId:
+   *                 type: string
+   *                 example: 507f1f77bcf86cd799439012
+   *               reason:
+   *                 type: string
+   *                 minLength: 10
+   *                 example: User sent inappropriate messages
+   *     responses:
+   *       200:
+   *         description: Report submitted successfully
+   *       400:
+   *         description: Validation error - reason must be at least 10 characters
+   *       500:
+   *         description: Server error
+   */
   router.post("/report", companionController.reportUser);
 
   return router;
