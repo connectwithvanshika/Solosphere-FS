@@ -59,37 +59,42 @@ Solo travel presents safety challenges, especially for women and first-time trav
 <table>
   <tr>
     <td align="center">
-      <img src="https://img.shields.io/badge/Lead_Architect-FF6B6B?style=for-the-badge" alt="Lead">
+      <img src="https://img.shields.io/badge/System_Design-FF6B6B?style=for-the-badge" alt="System Design">
       <br/><b>Rohan Singh</b>
-      <br/>System Design Lead
-      <br/><small>Backend Architecture & Optimization</small>
+      <br/>SDLC & System Design Lead
+      <br/><small>Architecture Planning, Module Breakdown, Backend Flow Design</small>
     </td>
+
     <td align="center">
-      <img src="https://img.shields.io/badge/Frontend_Engineer-4ECDC4?style=for-the-badge" alt="Frontend">
+      <img src="https://img.shields.io/badge/OOP_Implementation-4ECDC4?style=for-the-badge" alt="OOP">
       <br/><b>Vanshika Yadav</b>
-      <br/>Frontend & OOP Analyst
-      <br/><small>Component Design & Integration</small>
+      <br/>OOP & Frontend Integration
+      <br/><small>Component Design using OOP Concepts, UI-Logic Integration</small>
     </td>
+
     <td align="center">
-      <img src="https://img.shields.io/badge/Database_Expert-FFE66D?style=for-the-badge" alt="Database">
+      <img src="https://img.shields.io/badge/Database_UML-FFE66D?style=for-the-badge" alt="Database">
       <br/><b>Riya Garg</b>
-      <br/>Database & ER Modeling
-      <br/><small>Schema Design & Query Optimization</small>
+      <br/>Database & UML Design
+      <br/><small>ER Diagrams, Schema Design, Data Relationships</small>
     </td>
   </tr>
+
   <tr>
     <td align="center">
-      <img src="https://img.shields.io/badge/Patterns_Engineer-A8E6CF?style=for-the-badge" alt="Patterns">
+      <img src="https://img.shields.io/badge/Design_Patterns-A8E6CF?style=for-the-badge" alt="Patterns">
       <br/><b>Ronit Singh</b>
-      <br/>Design Patterns & SOLID
-      <br/><small>Code Quality & Maintainability</small>
+      <br/>Design Patterns & SOLID Principles
+      <br/><small>Applied SOLID Principles, Code Structure Optimization</small>
     </td>
+
     <td align="center">
-      <img src="https://img.shields.io/badge/QA_Engineer-FFB4B4?style=for-the-badge" alt="QA">
+      <img src="https://img.shields.io/badge/Testing_&_Documentation-FFB4B4?style=for-the-badge" alt="QA">
       <br/><b>Prakhar Srivastava</b>
-      <br/>QA & Documentation
-      <br/><small>Testing & Documentation</small>
+      <br/>Testing, SDLC Documentation & Validation
+      <br/><small>Test Cases, Workflow Documentation, System Validation</small>
     </td>
+
     <td></td>
   </tr>
 </table>
