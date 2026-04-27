@@ -54,60 +54,14 @@ Solo travel presents safety challenges, especially for women and first-time trav
 
 ---
 
-## Top Contributors
+## Contributions
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://img.shields.io/badge/System_Design-FF6B6B?style=for-the-badge" alt="System Design">
-      <br/><b>Rohan Singh</b>
-      <br/>SDLC & System Design Lead
-      <br/><small>Architecture Planning, Module Breakdown, Backend Flow Design</small>
-    </td>
+Rohan Singh – System Design & SDLC
+Vanshika Yadav – OOP & Frontend
+Riya Garg – Database & UML
+Ronit Singh – Design Patterns & SOLID
+Prakhar Srivastava – Testing & Documentation
 
-    <td align="center">
-      <img src="https://img.shields.io/badge/OOP_Implementation-4ECDC4?style=for-the-badge" alt="OOP">
-      <br/><b>Vanshika Yadav</b>
-      <br/>OOP & Frontend Integration
-      <br/><small>Component Design using OOP Concepts, UI-Logic Integration</small>
-    </td>
-
-    <td align="center">
-      <img src="https://img.shields.io/badge/Database_UML-FFE66D?style=for-the-badge" alt="Database">
-      <br/><b>Riya Garg</b>
-      <br/>Database & UML Design
-      <br/><small>ER Diagrams, Schema Design, Data Relationships</small>
-    </td>
-  </tr>
-
-  <tr>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Design_Patterns-A8E6CF?style=for-the-badge" alt="Patterns">
-      <br/><b>Ronit Singh</b>
-      <br/>Design Patterns & SOLID Principles
-      <br/><small>Applied SOLID Principles, Code Structure Optimization</small>
-    </td>
-
-    <td align="center">
-      <img src="https://img.shields.io/badge/Testing_&_Documentation-FFB4B4?style=for-the-badge" alt="QA">
-      <br/><b>Prakhar Srivastava</b>
-      <br/>Testing, SDLC Documentation & Validation
-      <br/><small>Test Cases, Workflow Documentation, System Validation</small>
-    </td>
-
-    <td></td>
-  </tr>
-</table>
-
-### Contribution Stats
-
-| Role | Commits | Code Reviews | Issues Fixed |
-|------|---------|--------------|--------------|
-| System Design | 34 | 12 | 8 |
-| Frontend/OOP | 28 | 15 | 7 |
-| Database | 19 | 8 | 5 |
-| Design Patterns | 22 | 16 | 9 |
-| QA/Docs | 15 | 6 | 4 |
 
 ---
 
