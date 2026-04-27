@@ -225,7 +225,7 @@ class ServerManager {
       // Allows cleanup and error handling without callbacks
       return new Promise((resolve, reject) => {
         this.httpServer = this.expressApp!.listen(this.config.port, () => {
-          this.logStartupMessage(`Server running on PORT ${this.config.port}`);
+          this.logStartupMessage(`🚀 Server running at: http://localhost:${this.config.port}`);
           this.logStartupMessage(`Environment: ${this.config.environment}`);
           resolve();
         });
